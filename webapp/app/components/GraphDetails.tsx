@@ -137,7 +137,7 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
                             <div className="font-medium mb-2">
                                 Connected Nodes:
                             </div>
-                            <div className="space-y-4 overflow-y-auto max-h-[400px]">
+                            <div className="space-y-4 overflow-y-auto max-h-[300px]">
                                 {Array.from(selectedNeighbors).map(
                                     (neighborId) => {
                                         const neighbor = graphData.nodes.find(

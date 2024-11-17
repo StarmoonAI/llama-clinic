@@ -110,7 +110,7 @@ export default async function RootLayout({
                 > */}
                 <main className="flex-grow mx-auto w-full flex flex-col">
                     <div className="backdrop-blur-[3px] h-[4rem]- h-[80px] flex-none flex items-center sticky top-0 z-50">
-                        <nav className="mx-auto w-full max-w-[1440px] px-4 flex items-center justify-between">
+                        <nav className="mx-auto w-full max-w-screen-lg px-4 flex items-center justify-between">
                             <a href="/" className="flex flex-row gap-3">
                                 <Image
                                     src={LlamaLogo}

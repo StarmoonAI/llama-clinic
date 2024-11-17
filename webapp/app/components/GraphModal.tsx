@@ -18,7 +18,10 @@ import { useState } from "react";
 import { GraphDetails } from "./GraphDetails";
 import GraphViz from "./GraphViz";
 import { useToast } from "@/components/ui/use-toast";
-import d3 from "d3";
+import { Input } from "@/components/ui/input";
+import { useMemo } from "react";
+import debounce from "lodash/debounce";
+
 interface XMLNodeData {
     "@_id": string;
     "@_key"?: string;
@@ -236,6 +239,36 @@ export function GraphModal() {
         ...new Set(graphData.nodes.map((node: NodeData) => node.type)),
     ];
 
+    const [searchQuery, setSearchQuery] = useState("");
+
+    // Create memoized debounced search handler
+    const debouncedSearch = useMemo(
+        () =>
+            debounce((searchTerm: string, data: GraphData) => {
+                if (!searchTerm) {
+                    handleClearSelection();
+                    return;
+                }
+
+                const term = searchTerm.toLowerCase();
+                const foundNode = data.nodes.find(
+                    (node) =>
+                        node.description.toLowerCase().includes(term) ||
+                        node.type.toLowerCase().includes(term)
+                );
+
+                if (foundNode) {
+                    handleNodeSelect(foundNode, data);
+                }
+            }, 300),
+        [handleNodeSelect, handleClearSelection]
+    );
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+        debouncedSearch(e.target.value, graphData);
+    };
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -249,8 +282,16 @@ export function GraphModal() {
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-[90vw] h-[90vh]  flex flex-col">
-                <DialogTitle className="text-2xl font-bold shrink-0 flex flex-row items-center justify-between mr-10">
-                    <span>Health explorer</span>
+                <DialogTitle className="flex flex-row gap-4 items-center justify-between mr-10">
+                    <span className="text-2xl font-bold shrink-0">
+                        Health explorer
+                    </span>
+                    <Input
+                        placeholder="Search through llama clinic..."
+                        value={searchQuery}
+                        onChange={handleSearch}
+                        className="flex-1 h-8"
+                    />
                     <Button size="sm" onClick={onSendToGP}>
                         Send to GP
                     </Button>
