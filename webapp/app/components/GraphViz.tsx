@@ -14,10 +14,6 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-interface GraphVizProps {
-    children: React.ReactNode;
-}
-
 type NodeType =
     | "POTENTIAL_TREATMENT"
     | "CURRENT_SYMPTOM"
@@ -111,7 +107,7 @@ const nodeDetails: Record<
     },
 };
 
-export const GraphViz = ({ children }: GraphVizProps) => {
+export const GraphViz = () => {
     const [currentNode, setCurrentNode] = useState<string>("ADHD_TREATMENT");
     const [history, setHistory] = useState<string[]>(["ADHD_TREATMENT"]);
     const [historyIndex, setHistoryIndex] = useState(0);
@@ -160,72 +156,65 @@ export const GraphViz = ({ children }: GraphVizProps) => {
     const currentNodeData = mockGraph[currentNode];
 
     return (
-        <Sheet>
-            <SheetTrigger asChild>{children}</SheetTrigger>
-            <SheetContent
-                className="rounded-tl-xl rounded-bl-xl"
-                style={{ maxWidth: "40vw" }}
-            >
-                <SheetHeader className="flex flex-row items-center gap-4">
-                    <div className="flex flex-row items-center mt-2">
-                        <Button
-                            variant="ghost"
-                            onClick={handleBack}
-                            disabled={historyIndex === 0}
-                            size="icon"
-                        >
-                            <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={handleForward}
-                            disabled={historyIndex === history.length - 1}
-                            size="icon"
-                        >
-                            <ChevronRight className="h-4 w-4" />
-                        </Button>
-                    </div>
-                    <SheetTitle>Early diagnosis</SheetTitle>
-                </SheetHeader>
-                <div className="container mx-auto p-4 max-w-4xl">
-                    <Card
-                        className={`${nodeDetails[currentNodeData.type].color} border-2 mb-6`}
+        <div
+            className="rounded-tl-xl rounded-bl-xl"
+            // style={{ maxWidth: "40vw" }}
+        >
+            <div className="flex flex-row items-center gap-4">
+                <div className="flex flex-row items-center mt-2">
+                    <Button
+                        variant="ghost"
+                        onClick={handleBack}
+                        disabled={historyIndex === 0}
+                        size="icon"
                     >
-                        <CardHeader>
-                            <CardTitle>
-                                {nodeDetails[currentNodeData.type].icon}{" "}
-                                {currentNodeData.title}
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-muted-foreground mb-4">
-                                {currentNodeData.description}
-                            </p>
-                            <div className="bg-white bg-opacity-50 rounded-lg p-4">
-                                <h3 className="text-sm font-semibold mb-2 flex items-center">
-                                    <ChevronDown className="mr-2 h-4 w-4" />
-                                    Related Factors
-                                </h3>
-                                <ScrollArea className="h-[400px] rounded-md border">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
-                                        {currentNodeData.connections.map(
-                                            (connectionId) =>
-                                                renderNode(
-                                                    mockGraph[connectionId]
-                                                )
-                                        )}
-                                    </div>
-                                </ScrollArea>
-                            </div>
-                        </CardContent>
-                    </Card>
+                        <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        onClick={handleForward}
+                        disabled={historyIndex === history.length - 1}
+                        size="icon"
+                    >
+                        <ChevronRight className="h-4 w-4" />
+                    </Button>
                 </div>
-                {/* <SheetFooter>
+                <div>Early diagnosis</div>
+            </div>
+            <div className="container mx-auto p-4 max-w-4xl">
+                <Card
+                    className={`${nodeDetails[currentNodeData.type].color} border-2 mb-6`}
+                >
+                    <CardHeader>
+                        <CardTitle>
+                            {nodeDetails[currentNodeData.type].icon}{" "}
+                            {currentNodeData.title}
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-muted-foreground mb-4">
+                            {currentNodeData.description}
+                        </p>
+                        <div className="bg-white bg-opacity-50 rounded-lg p-4">
+                            <h3 className="text-sm font-semibold mb-2 flex items-center">
+                                <ChevronDown className="mr-2 h-4 w-4" />
+                                Related Factors
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
+                                {currentNodeData.connections.map(
+                                    (connectionId) =>
+                                        renderNode(mockGraph[connectionId])
+                                )}
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+            {/* <SheetFooter>
                     <SheetClose asChild>
                         <Button type="submit">Save changes</Button>
                     </SheetClose>
                 </SheetFooter> */}
-            </SheetContent>
-        </Sheet>
+        </div>
     );
 };

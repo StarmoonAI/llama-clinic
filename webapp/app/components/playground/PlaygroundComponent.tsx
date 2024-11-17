@@ -12,7 +12,6 @@ import { MoonStar } from "lucide-react";
 import Image from "next/image";
 import { updateUser } from "@/db/users";
 import _ from "lodash";
-import { GraphViz } from "../GraphViz";
 
 import {
     Card,
@@ -203,31 +202,29 @@ const Playground: React.FC<PlaygroundProps> = ({ selectedUser }) => {
                                             exit: { opacity: 0 },
                                         }}
                                     >
-                                        <GraphViz>
-                                            <Button
-                                                disabled={
-                                                    !selectedUser ||
-                                                    isSelectDisabled
-                                                }
-                                                className={
-                                                    "z-50 flex items-center gap-1.5 rounded-full shadow-xl"
-                                                }
-                                                onClick={
-                                                    () => {}
-                                                    // handleClickOpenConnection
-                                                }
-                                                size="lg"
-                                            >
-                                                <MoonStar
-                                                    size={16}
-                                                    strokeWidth={3}
-                                                    stroke={"currentColor"}
-                                                />
-                                                <span className="text-xl font-semibold">
-                                                    Talk
-                                                </span>
-                                            </Button>
-                                        </GraphViz>
+                                        <Button
+                                            disabled={
+                                                !selectedUser ||
+                                                isSelectDisabled
+                                            }
+                                            className={
+                                                "z-50 flex items-center gap-1.5 rounded-full shadow-xl"
+                                            }
+                                            onClick={
+                                                // () => {}
+                                                handleClickOpenConnection
+                                            }
+                                            size="lg"
+                                        >
+                                            <MoonStar
+                                                size={16}
+                                                strokeWidth={3}
+                                                stroke={"currentColor"}
+                                            />
+                                            <span className="text-xl font-semibold">
+                                                Talk
+                                            </span>
+                                        </Button>
                                     </motion.div>
                                 </AnimatePresence>
                             </div>

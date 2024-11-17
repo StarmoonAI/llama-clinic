@@ -17,6 +17,7 @@ import { XMLParser } from "fast-xml-parser";
 import Cytoscape from "./Cytoscape"; // Assuming GraphVisualizer is your visualization component
 import { useEffect } from "react";
 import { useState } from "react";
+import { GraphViz } from "./GraphViz";
 
 interface GraphNode {
     id: string;
@@ -124,15 +125,22 @@ export function GraphModal() {
             </DialogTrigger>
             <DialogContent className="max-w-[90vw] h-[90vh]">
                 <DialogTitle>Health explorer</DialogTitle>
-                <div>
-                    {graphData ? (
-                        <Cytoscape
-                            nodes={graphData.nodes}
-                            edges={graphData.edges}
-                        />
-                    ) : (
-                        <p>Loading graph...</p>
-                    )}
+                <div className="w-full h-full">
+                    <div className="flex flex-row w-full h-full">
+                        <div className="w-3/5 h-full">
+                            {graphData ? (
+                                <Cytoscape
+                                    nodes={graphData.nodes}
+                                    edges={graphData.edges}
+                                />
+                            ) : (
+                                <p>Loading graph...</p>
+                            )}
+                        </div>
+                        <div className="w-2/5 h-full">
+                            <GraphViz />
+                        </div>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>
