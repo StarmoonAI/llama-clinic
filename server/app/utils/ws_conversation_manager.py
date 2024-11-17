@@ -38,7 +38,7 @@ light_rag_instance_ = light_rag_instance()
 
 def medical_information_tool(query):
     """
-    A tool that retrieves medical information and patient's health records from the database.
+    A tool that retrieves medical information, patient's health records and patient's lifestyle from the database.
     """
     return light_rag_instance_.query(query, param=QueryParam(mode="hybrid"))
 
@@ -48,13 +48,13 @@ tools = [
         "type": "function",
         "function": {
             "name": "medical_information_tool",
-            "description": "A tool that uses the data extracted from the functions to answer questions about medical information and patient's healthcare records.",
+            "description": "A tool that uses the data extracted from the functions to answer questions about medical information and patient's healthcare records and patient's lifestyle.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "query": {
                         "type": "string",
-                        "description": "Query related to medical information and patient's health records.",
+                        "description": "Query related to medical information, patient's health records and patient's lifestyle.",
                     }
                 },
                 "required": ["query"],

@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d2" for="node" attr.name="source_id" attr.type="string"/>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d6" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d5" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d4" for="edge" attr.name="description" attr.type="string"/>
+<key id="d3" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d2" for="node" attr.name="source_id" attr.type="string"/>
 <key id="d1" for="node" attr.name="description" attr.type="string"/>
 <key id="d0" for="node" attr.name="entity_type" attr.type="string"/>
 <graph edgedefault="undirected"><node id="&quot;FATHER HEART DISEASE&quot;">
@@ -49,8 +53,8 @@
 </node>
 <node id="&quot;TREATMENTS&quot;">
   <data key="d0">"TREATMENTS"</data>
-  <data key="d1">"Treatments for heart disease may include lifestyle changes, medications, and surgical procedures such as angioplasty or bypass surgery to improve heart function."</data>
-  <data key="d2">chunk-2a95abd48e9df025f08cfe5a84e8dd84</data>
+  <data key="d1">"Treatments are the medical interventions used to manage or cure a disease."&lt;SEP&gt;"Treatments for heart disease may include lifestyle changes, medications, and surgical procedures such as angioplasty or bypass surgery to improve heart function."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0&lt;SEP&gt;chunk-2a95abd48e9df025f08cfe5a84e8dd84</data>
 </node>
 <node id="&quot;BROTHER QESFDDSAFS&quot;">
   <data key="d0">"DISEASE NAME"</data>
@@ -94,12 +98,92 @@
 </node>
 <node id="&quot;GRANDFATHER&quot;">
   <data key="d0">"PERSON"</data>
-  <data key="d1">"Grandfather is a familial figure, specifically paternal, but no relevant medical information is provided in the text."</data>
-  <data key="d2">chunk-709b5a7dfc233e469fade6470281b337</data>
+  <data key="d1">"Grandfather is a familial figure, specifically paternal, but no relevant medical information is provided in the text."&lt;SEP&gt;"Grandfather is a paternal figure mentioned in the text, but no specific attributes or activities related to disease are provided."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0&lt;SEP&gt;chunk-709b5a7dfc233e469fade6470281b337</data>
 </node>
 <node id="&quot;SAFFASDFASD&quot;">
   <data key="d0">"DISEASE NAME"</data>
   <data key="d1">"Saffasdfasd is mentioned as a potential disease name, but no specific details or attributes are provided in the text."</data>
   <data key="d2">chunk-709b5a7dfc233e469fade6470281b337</data>
 </node>
+<node id="&quot;DISEASE NAME&quot;">
+  <data key="d0">"DISEASE NAME"</data>
+  <data key="d1">"The term 'disease name' refers to a category of medical conditions that affect the body or mind."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0</data>
+</node>
+<node id="&quot;SYMPTOMS&quot;">
+  <data key="d0">"SYMPTOMS"</data>
+  <data key="d1">"Symptoms are the signs or indications of a disease, often experienced by the patient."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0</data>
+</node>
+<node id="&quot;CAUSES OF DISEASE&quot;">
+  <data key="d0">"CAUSES OF DISEASE"</data>
+  <data key="d1">"Causes of disease refer to the factors or conditions that lead to the onset of a medical condition."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0</data>
+</node>
+<node id="&quot;DIAGNOSIS OF THE DISEASE&quot;">
+  <data key="d0">"DIAGNOSIS OF THE DISEASE"</data>
+  <data key="d1">"Diagnosis of the disease involves identifying the nature of a medical condition based on symptoms and tests."</data>
+  <data key="d2">chunk-0e2bd7aa3943cedeff2066804b90c6d0</data>
+</node>
+<node id="&quot;GRANDMOTHER&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"Grandmother is a familial figure, specifically the paternal grandmother, indicating a relationship within a family structure."</data>
+  <data key="d2">chunk-7017ec8c978b0c28c7aa2f7b27498bf9</data>
+</node>
+<node id="&quot;PATERNAL&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Paternal refers to the side of the family related to the father, indicating lineage and familial connections."</data>
+  <data key="d2">chunk-7017ec8c978b0c28c7aa2f7b27498bf9</data>
+</node>
+<node id="&quot;BROTHER&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"Brother is a relative of the child mentioned, indicating a familial connection that may be relevant to the child's health history."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;WEWDSAGSFBV&quot;">
+  <data key="d0">"DISEASE NAME"</data>
+  <data key="d1">"wewdsagsfbv is a disease referenced in the context of the child's family history, suggesting a potential genetic or hereditary link."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;CHILD&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"The child is the subject of the report, whose health history is being discussed in relation to family history."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;FAMILY HISTORY&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Family history refers to the medical history of relatives, which can provide insights into potential health risks for the child."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<edge source="&quot;GRANDMOTHER&quot;" target="&quot;PATERNAL&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Grandmother is identified as a paternal figure, indicating her relationship to the family through the father."</data>
+  <data key="d5">"family relationship, lineage"</data>
+  <data key="d6">chunk-7017ec8c978b0c28c7aa2f7b27498bf9</data>
+</edge>
+<edge source="&quot;BROTHER&quot;" target="&quot;WEWDSAGSFBV&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Brother's history of wewdsagsfbv may indicate a hereditary risk factor for the child, linking family history to potential health outcomes."</data>
+  <data key="d5">"family history, hereditary risk"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;BROTHER&quot;" target="&quot;CHILD&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"The child and Brother are related, indicating a familial connection that may influence the child's health outcomes."</data>
+  <data key="d5">"family connection, health influence"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;WEWDSAGSFBV&quot;" target="&quot;FAMILY HISTORY&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"The family history of wewdsagsfbv is relevant to understanding the child's potential health risks, indicating a connection between genetics and disease."</data>
+  <data key="d5">"genetic link, health risk"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;CHILD&quot;" target="&quot;FAMILY HISTORY&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"The child's health is being assessed in the context of family history, which may affect their risk for certain diseases."</data>
+  <data key="d5">"health assessment, risk factors"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
 </graph></graphml>
