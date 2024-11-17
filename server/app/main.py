@@ -14,6 +14,8 @@ from app.api.endpoints import (
     hardware_auth,
     rag,
     rag_text,
+    rag_text_family_history,
+    get_graphml,
 )
 from app.core.config import settings
 from dotenv import load_dotenv
@@ -37,7 +39,7 @@ origins = [
     "https://mydomain.com",
     "http://localhost",
     "http://localhost:8080",
-    "http://localhost:3000"
+    "http://localhost:3000",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -52,8 +54,10 @@ app.include_router(db_user.router, prefix="/api", tags=["User"])
 app.include_router(generate_token.router, prefix="/api", tags=["Token"])
 app.include_router(create_friendly_slug.router, prefix="/api", tags=["Token"])
 app.include_router(hardware_auth.router, prefix="/api", tags=["Token"])
-app.include_router(rag.router, prefix="/api", tags=["RAG"])
+# app.include_router(rag.router, prefix="/api", tags=["RAG"])
 app.include_router(rag_text.router, prefix="/api", tags=["RAG"])
+app.include_router(rag_text_family_history.router, prefix="/api", tags=["RAG"])
+app.include_router(get_graphml.router, prefix="/api", tags=["RAG"])
 app.include_router(starmoon.router, tags=["StarMoon WebSocket"])
 
 

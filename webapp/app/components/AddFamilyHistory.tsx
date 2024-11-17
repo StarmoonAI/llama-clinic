@@ -56,13 +56,16 @@ type FamilyHistoryEntry = {
 
 const submitToAPI = async (data: z.infer<typeof formSchema>) => {
   try {
-    const response = await fetch("http://localhost:8000/api/rag_text", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "http://localhost:8000/api/rag_text_family_history",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     if (!response.ok) throw new Error("API call failed");
 
