@@ -9,9 +9,7 @@ router = APIRouter()
 
 
 class RagTextRequest(BaseModel):
-    relation: str
-    condition: str
-
+    text: str
 
 light_rag_instance_ = light_rag_instance()
 
@@ -20,7 +18,7 @@ light_rag_instance_ = light_rag_instance()
 async def process_rag_text(request_data: RagTextRequest):
     try:
         # Input validation
-        input_text = request_data.relation + " " + request_data.condition
+        input_text = request_data.text
         if not input_text.strip():
             raise HTTPException(status_code=400, detail="Empty text is not allowed")
 
