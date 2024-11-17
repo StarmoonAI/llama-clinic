@@ -46,7 +46,7 @@
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "cytoscape": "^3.30.3",
+    "d3": "^7.9.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "embla-carousel-autoplay": "^8.3.1",
@@ -81,6 +81,7 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/cytoscape": "^3.21.8",
+    "@types/d3": "^7.4.3",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.17.7",
     "@types/node": "20.10.6",

@@ -8,6 +8,26 @@ declare global {
         type: "demo" | "preorder";
     }
 
+    interface NodeData {
+        id: string;
+        type: string;
+        description: string;
+        sourceId: string;
+    }
+
+    interface EdgeData {
+        source: string;
+        target: string;
+        weight: number;
+        description: string;
+        keywords: string[];
+    }
+
+    interface GraphData {
+        nodes: NodeData[];
+        links: EdgeData[];
+    }
+
     interface ITestCharacter {
         name: string;
         title: string;

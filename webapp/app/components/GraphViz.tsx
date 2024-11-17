@@ -1,220 +1,267 @@
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
+import React, { useEffect, useRef, useState } from "react";
+import * as d3 from "d3";
 
-type NodeType =
-    | "POTENTIAL_TREATMENT"
-    | "CURRENT_SYMPTOM"
-    | "FAMILY_HISTORY"
-    | "LIFESTYLE_FACTOR";
-
-interface Node {
+interface d3NodeData extends d3.SimulationNodeDatum {
     id: string;
-    type: NodeType;
-    title: string;
+    type: string;
     description: string;
-    connections: string[];
+    sourceId: string;
 }
 
-const mockGraph: Record<string, Node> = {
-    ADHD_TREATMENT: {
-        id: "ADHD_TREATMENT",
-        type: "POTENTIAL_TREATMENT",
-        title: "ADHD Treatment Options",
-        description:
-            "Potential treatments for Attention Deficit Hyperactivity Disorder",
-        connections: [
-            "INATTENTION",
-            "HYPERACTIVITY",
-            "FAMILY_HISTORY_ADHD",
-            "SLEEP_HABITS",
-        ],
-    },
-    INATTENTION: {
-        id: "INATTENTION",
-        type: "CURRENT_SYMPTOM",
-        title: "Inattention",
-        description: "Difficulty focusing on tasks or activities",
-        connections: ["ADHD_TREATMENT"],
-    },
-    HYPERACTIVITY: {
-        id: "HYPERACTIVITY",
-        type: "CURRENT_SYMPTOM",
-        title: "Hyperactivity",
-        description: "Excessive movement and restlessness",
-        connections: ["ADHD_TREATMENT"],
-    },
-    FAMILY_HISTORY_ADHD: {
-        id: "FAMILY_HISTORY_ADHD",
-        type: "FAMILY_HISTORY",
-        title: "Family History of ADHD",
-        description: "Presence of ADHD in immediate family members",
-        connections: ["ADHD_TREATMENT"],
-    },
-    SLEEP_HABITS: {
-        id: "SLEEP_HABITS",
-        type: "LIFESTYLE_FACTOR",
-        title: "Sleep Habits",
-        description: "Quality and duration of sleep",
-        connections: ["ADHD_TREATMENT"],
-    },
-};
+interface d3EdgeData extends d3.SimulationLinkDatum<d3NodeData> {
+    source: string | d3NodeData;
+    target: string | d3NodeData;
+    weight: number;
+    description: string;
+    keywords: string[];
+}
 
-const nodeDetails: Record<
-    NodeType,
-    {
-        color: string;
-        icon: React.ReactNode;
-        title: string;
-        neighborTitle: string;
-    }
-> = {
-    POTENTIAL_TREATMENT: {
-        color: "border-blue-200 hover:border-blue-300",
-        icon: <span className="text-blue-500">💊</span>,
-        title: "Potential Treatment",
-        neighborTitle: "Related treatments",
-    },
-    CURRENT_SYMPTOM: {
-        color: "border-red-200 hover:border-red-300",
-        icon: <span className="text-red-500">🔔</span>,
-        title: "Current Symptom",
-        neighborTitle: "Related symptoms",
-    },
-    FAMILY_HISTORY: {
-        color: "border-green-200 hover:border-green-300",
-        icon: <span className="text-green-500">👪</span>,
-        title: "Family History",
-        neighborTitle: "Related family history",
-    },
-    LIFESTYLE_FACTOR: {
-        color: "border-yellow-200 hover:border-yellow-300",
-        icon: <span className="text-yellow-500">🌿</span>,
-        title: "Lifestyle Factor",
-        neighborTitle: "Related lifestyle factors",
-    },
-};
+interface GraphData {
+    nodes: d3NodeData[];
+    links: d3EdgeData[];
+}
 
-export const GraphViz = () => {
-    const [currentNode, setCurrentNode] = useState<string>("ADHD_TREATMENT");
-    const [history, setHistory] = useState<string[]>(["ADHD_TREATMENT"]);
-    const [historyIndex, setHistoryIndex] = useState(0);
+const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
+    const svgRef = useRef<SVGSVGElement>(null);
+    const tooltipRef = useRef<HTMLDivElement>(null);
+    const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
 
-    const handleNodeClick = (nodeId: string) => {
-        setCurrentNode(nodeId);
-        setHistory((prev) => [...prev.slice(0, historyIndex + 1), nodeId]);
-        setHistoryIndex((prev) => prev + 1);
-    };
+    console.log(data);
+    useEffect(() => {
+        if (!svgRef.current || !data.nodes.length) return;
 
-    const handleBack = () => {
-        if (historyIndex > 0) {
-            setHistoryIndex((prev) => prev - 1);
-            setCurrentNode(history[historyIndex - 1]);
+        const svg = d3.select(svgRef.current);
+        svg.selectAll("*").remove(); // Clear previous render
+
+        // Color scale for different node types
+        const colorScale = d3
+            .scaleOrdinal()
+            .domain(["SYMPTOM", "DISEASE", "TREATMENT", "MEDICATION"])
+            .range(["#ff9999", "#99ff99", "#9999ff", "#ffff99"]);
+
+        // Create force simulation
+        const simulation = d3
+            .forceSimulation(data.nodes as d3NodeData[])
+            .force(
+                "link",
+                d3
+                    .forceLink(data.links)
+                    .id((d: any) => d.id)
+                    .distance(100)
+            )
+            .force("charge", d3.forceManyBody().strength(-200))
+            .force(
+                "center",
+                d3.forceCenter(dimensions.width / 2, dimensions.height / 2)
+            )
+            .force("collision", d3.forceCollide().radius(50));
+
+        // Create container group with zoom
+        const g = svg.append("g");
+
+        // Add zoom behavior
+        const zoom = d3
+            .zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom as any);
+
+        // Create links
+        const links = g
+            .append("g")
+            .selectAll("line")
+            .data(data.links)
+            .join("line")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+            .attr("stroke-width", (d) => Math.sqrt(d.weight));
+
+        // Create nodes
+        const nodes = g
+            .append("g")
+            .selectAll("g")
+            .data(data.nodes)
+            .join("g")
+            .call(
+                d3
+                    .drag<SVGGElement, d3NodeData>()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended) as any
+            );
+
+        // Add circles to nodes
+        nodes
+            .append("circle")
+            .attr("r", 20)
+            .attr("fill", (d) => colorScale(d.type) as string)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2);
+
+        // Add labels to nodes
+        nodes
+            .append("text")
+            .text((d) => d.id)
+            .attr("text-anchor", "middle")
+            .attr("dy", 30)
+            .attr("class", "text-sm fill-gray-700");
+
+        // Create tooltip
+        const tooltip = d3
+            .select(tooltipRef.current)
+            .attr(
+                "class",
+                "absolute hidden bg-white p-4 rounded-lg shadow-lg border text-sm max-w-xs"
+            );
+
+        // Add hover interactions
+        nodes
+            .on("mouseover", (event, d) => {
+                tooltip
+                    .html(
+                        `
+            <div class="font-bold">${d.id}</div>
+            <div class="text-gray-600">${d.type}</div>
+            <div class="mt-2">${d.description}</div>
+          `
+                    )
+                    .style("left", event.pageX + 10 + "px")
+                    .style("top", event.pageY - 10 + "px")
+                    .classed("hidden", false);
+            })
+            .on("mouseout", () => {
+                tooltip.classed("hidden", true);
+            });
+
+        // Add hover interactions for links
+        links
+            .on("mouseover", (event, d) => {
+                tooltip
+                    .html(
+                        `
+            <div class="font-bold">Relationship</div>
+            <div>${d.description}</div>
+            <div class="mt-2">
+              <span class="font-semibold">Keywords:</span> 
+              ${d.keywords.join(", ")}
+            </div>
+            <div class="mt-1">
+              <span class="font-semibold">Weight:</span> 
+              ${d.weight}
+            </div>
+          `
+                    )
+                    .style("left", event.pageX + 10 + "px")
+                    .style("top", event.pageY - 10 + "px")
+                    .classed("hidden", false);
+            })
+            .on("mouseout", () => {
+                tooltip.classed("hidden", true);
+            });
+
+        // Update positions on simulation tick
+        simulation.on("tick", () => {
+            links
+                .attr("x1", (d) => (d.source as any).x!)
+                .attr("y1", (d) => (d.source as any).y!)
+                .attr("x2", (d) => (d.target as any).x!)
+                .attr("y2", (d) => (d.target as any).y!);
+
+            nodes.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        });
+
+        // Drag functions
+        function dragstarted(event: any) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
         }
-    };
 
-    const handleForward = () => {
-        if (historyIndex < history.length - 1) {
-            setHistoryIndex((prev) => prev + 1);
-            setCurrentNode(history[historyIndex + 1]);
+        function dragged(event: any) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
         }
-    };
 
-    const renderNode = (node: Node) => {
-        return (
-            <Card
-                key={node.id}
-                className={`${nodeDetails[node.type].color} border-2 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105 mb-4`}
-                onClick={() => handleNodeClick(node.id)}
-            >
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                        {nodeDetails[node.type].icon} {node.title}
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-xs text-muted-foreground">
-                        {node.description}
-                    </p>
-                </CardContent>
-            </Card>
-        );
-    };
+        function dragended(event: any) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
 
-    const currentNodeData = mockGraph[currentNode];
+        // Cleanup
+        return () => {
+            simulation.stop();
+        };
+    }, [data, dimensions]);
+
+    // Update dimensions on window resize
+    useEffect(() => {
+        const handleResize = () => {
+            if (svgRef.current) {
+                const container = svgRef.current.parentElement;
+                if (container) {
+                    setDimensions({
+                        width: container.clientWidth,
+                        height: Math.max(container.clientHeight, 600),
+                    });
+                }
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
-        <div
-            className="rounded-tl-xl rounded-bl-xl"
-            // style={{ maxWidth: "40vw" }}
-        >
-            <div className="flex flex-row items-center gap-4">
-                <div className="flex flex-row items-center mt-2">
-                    <Button
-                        variant="ghost"
-                        onClick={handleBack}
-                        disabled={historyIndex === 0}
-                        size="icon"
-                    >
-                        <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        onClick={handleForward}
-                        disabled={historyIndex === history.length - 1}
-                        size="icon"
-                    >
-                        <ChevronRight className="h-4 w-4" />
-                    </Button>
-                </div>
-                <div>Early diagnosis</div>
-            </div>
-            <div className="container mx-auto p-4 max-w-4xl">
-                <Card
-                    className={`${nodeDetails[currentNodeData.type].color} border-2 mb-6`}
-                >
-                    <CardHeader>
-                        <CardTitle>
-                            {nodeDetails[currentNodeData.type].icon}{" "}
-                            {currentNodeData.title}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-sm text-muted-foreground mb-4">
-                            {currentNodeData.description}
-                        </p>
-                        <div className="bg-white bg-opacity-50 rounded-lg p-4">
-                            <h3 className="text-sm font-semibold mb-2 flex items-center">
-                                <ChevronDown className="mr-2 h-4 w-4" />
-                                Related Factors
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
-                                {currentNodeData.connections.map(
-                                    (connectionId) =>
-                                        renderNode(mockGraph[connectionId])
-                                )}
-                            </div>
+        <div className="w-full h-full relative">
+            {/* Legend */}
+            <div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg border">
+                <div className="text-sm font-bold mb-2">Node Types</div>
+                {["SYMPTOM", "DISEASE", "TREATMENT", "MEDICATION"].map(
+                    (type) => (
+                        <div
+                            key={type}
+                            className="flex items-center gap-2 text-sm"
+                        >
+                            <div
+                                className="w-4 h-4 rounded-full"
+                                style={{
+                                    backgroundColor: d3
+                                        .scaleOrdinal<string>()
+                                        .domain([
+                                            "SYMPTOM",
+                                            "DISEASE",
+                                            "TREATMENT",
+                                            "MEDICATION",
+                                        ])
+                                        .range([
+                                            "#ff9999",
+                                            "#99ff99",
+                                            "#9999ff",
+                                            "#ffff99",
+                                        ])(type),
+                                }}
+                            />
+                            {type}
                         </div>
-                    </CardContent>
-                </Card>
+                    )
+                )}
             </div>
-            {/* <SheetFooter>
-                    <SheetClose asChild>
-                        <Button type="submit">Save changes</Button>
-                    </SheetClose>
-                </SheetFooter> */}
+
+            <svg
+                ref={svgRef}
+                width={dimensions.width}
+                height={dimensions.height}
+                className="bg-gray-50"
+            />
+            <div ref={tooltipRef} />
         </div>
     );
 };
+
+export default GraphViz;
