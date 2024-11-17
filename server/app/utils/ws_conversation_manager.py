@@ -12,6 +12,9 @@ from app.services.stt import get_deepgram_transcript
 from app.services.tts import azure_tts, check_task_result, create_emotion_detection_task
 from app.utils.transcription_collector import TranscriptCollector
 from fastapi import WebSocket, WebSocketDisconnect
+from app.utils.light_rag import light_rag_instance
+from lightrag import LightRAG, QueryParam
+
 
 transcript_collector = TranscriptCollector()
 client = Clients()
@@ -23,6 +26,125 @@ CLAUSE_BOUNDARIES = r"\.|\?|!|。|;"
 
 def chunk_text_by_clause(text):
     return nltk.sent_tokenize(text)
+
+
+light_rag_instance = light_rag_instance()
+
+
+def medical_information_tool(query):
+    """
+    A tool that retrieves medical information and patient's health records from the database.
+    """
+    return light_rag_instance.query(query, param=QueryParam(mode="hybrid"))
+
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "medical_information_tool",
+            "description": "A tool that uses the data extracted from the functions to answer questions about medical information and patient's healthcare records.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Query related to medical information and patient's health records.",
+                    }
+                },
+                "required": ["query"],
+            },
+        },
+    },
+]
+
+
+def run_conversation(client, user_prompt, messages):
+
+    temp_messages = [
+        {
+            "role": "system",
+            "content": "You are a function calling LLM that uses the data extracted from the functions to answer questions about medical information. Don't mention anything about tool in response.",
+        },
+        {
+            "role": "user",
+            "content": user_prompt,
+        },
+    ]
+
+    print("temp_messages++++", temp_messages)
+
+    response = client.agroq_client.chat.completions.create(
+        model="llama-3.1-70b-versatile",
+        messages=temp_messages,
+        tools=tools,
+        tool_choice="auto",
+        max_tokens=4096,
+        temperature=0,
+    )
+
+    # response = client.client_azure_4o.chat.completions.create(
+    #     model="gpt-4o",
+    #     messages=temp_messages,
+    #     stream=True,
+    # )
+
+    response_message = response.choices[0].message
+    tool_calls = response_message.tool_calls
+    print("tool_calls+++", tool_calls)
+
+    # checking if function calling required
+    if tool_calls:
+        available_functions = {
+            "medical_information_tool": medical_information_tool,
+        }
+        # messages.append(response_message)
+
+        for tool_call in tool_calls:
+            # extracting the tool information
+            function_name = tool_call.function.name
+            function_to_call = available_functions[function_name]
+            function_args = json.loads(tool_call.function.arguments)
+            function_response = function_to_call(**function_args)
+
+            # adding response from tool/function to chat template
+            messages.append(
+                {
+                    "tool_call_id": tool_call.id,
+                    "role": "tool",
+                    "name": function_name,
+                    "content": function_response,
+                }
+            )
+
+        # getting the final response using function response
+        response = client.agroq_client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            messages=messages,
+            stream=True,
+        )
+
+        # response = client.client_azure_4o.chat.completions.create(
+        #     model="gpt-4o",
+        #     messages=messages,
+        #     stream=True,
+        # )
+
+    else:
+        response = client.agroq_client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            messages=messages,
+            max_tokens=4096,
+            stream=True,
+        )
+
+        # response = client.client_azure_4o.chat.completions.create(
+        #     model="gpt-4o",
+        #     messages=messages,
+        #     stream=True,
+        # )
+
+    return response
 
 
 class ConversationManager:
@@ -50,171 +172,139 @@ class ConversationManager:
         bytes_queue: asyncio.Queue,
         is_greeting=False,
     ):
-        try:
+        # try:
 
-            if not is_greeting:
-                messages.append({"role": "user", "content": utterance})
-                # response = client.client_azure_4o.chat.completions.create(
-                #     model="gpt-4o",
-                #     messages=messages,
-                #     stream=True,
-                # )
-                response = client.agroq_client.chat.completions.create(
-                    model="llama-3.2-90b-vision-preview",
-                    messages=messages,
-                    temperature=0.5,
-                    max_tokens=2048,
-                    stream=True,
-                )
-                # send utterance to celery task
-                task_id = create_emotion_detection_task(
-                    f"{previous_sentence}\n\n{utterance}", user, "user", session_id
-                )
-                if device == "web":
-                    bytes_queue.put_nowait(
-                        {
-                            "type": "json",
-                            "device": device,
-                            "data": {
-                                "type": "input",
-                                "audio_data": None,
-                                "text_data": utterance,
-                                "boundary": None,
-                                "task_id": task_id,
-                            },
-                        }
-                    )
-                    # add id to the queue
-                    task_id_queue.put_nowait(task_id)
-            else:
-                messages_ = messages.copy()
-                messages_.append({"role": "user", "content": utterance})
-                # response = client.client_azure_4o.chat.completions.create(
-                #     model="gpt-4o",
-                #     messages=messages_,
-                #     stream=True,
-                # )
+        print("is_greeting---------", is_greeting)
 
-                response = client.agroq_client.chat.completions.create(
-                    model="llama-3.2-90b-vision-preview",
-                    messages=messages_,
-                    temperature=0.5,
-                    max_tokens=2048,
-                    stream=True,
-                )
+        if not is_greeting:
 
-            accumulated_text = []
-            response_text = ""
-            is_first_chunk = True
-            previous_sentence = utterance
-
-            for chunk in response:
-                if (
-                    self.is_interrupted
-                    or stop_event.is_set()
-                    or not self.connection_open
-                ):
-                    self.is_interrupted = False
-                    # clear bytes_queue
-                    while not bytes_queue.empty():
-                        bytes_queue.get_nowait()
-                    self.check_task_result_tasks.clear()
-                    break
-
-                if chunk.choices and chunk.choices[0].delta.content:
-                    chunk_text = emoji.replace_emoji(
-                        chunk.choices[0].delta.content, replace=""
-                    )
-                    accumulated_text.append(chunk_text)
-                    response_text += chunk_text
-                    sentences = chunk_text_by_clause("".join(accumulated_text))
-                    sentences = [sentence for sentence in sentences if sentence]
-
-                    if len(sentences) > 1:
-                        for sentence in sentences[:-1]:
-                            if is_first_chunk:
-                                boundary = "start"
-                            # elif chunk.choices[0]["finish_reason"] == "stop":
-                            #     boundary = "end"
-                            else:
-                                boundary = "mid"
-                            task_id = create_emotion_detection_task(
-                                f"{previous_sentence}\n\n{sentence}",
-                                user,
-                                "assistant",
-                                session_id,
-                            )
-                            azure_tts(
-                                sentence,
-                                boundary,
-                                task_id,
-                                user["toy_id"],
-                                device,
-                                bytes_queue,
-                            )
-
-                            bytes_queue
-                            if device == "web":
-                                task_id_queue.put_nowait(task_id)
-                                # task = asyncio.create_task(
-                                #     check_task_result_hardware(task_id, text_queue)
-                                # )
-                                # self.check_task_result_tasks.append(task)
-                            previous_sentence = sentence
-                            is_first_chunk = False
-
-                            bytes_queue.put_nowait(
-                                {
-                                    "type": "info",
-                                    "device": device,
-                                    "data": "END_OF_SENTENCE",
-                                }
-                            )
-
-                        accumulated_text = [sentences[-1]]
-
-            if accumulated_text and (
-                not self.is_interrupted or not stop_event.is_set()
-            ):
-                accumulated_text_ = "".join(accumulated_text)
-                task_id = create_emotion_detection_task(
-                    f"{previous_sentence}\n\n{accumulated_text_}",
-                    user,
-                    "assistant",
-                    session_id,
-                )
-                azure_tts(
-                    accumulated_text_,
-                    "end",
-                    task_id,
-                    user["toy_id"],
-                    device,
-                    bytes_queue,
-                )
-                if device == "web":
-                    task_id_queue.put_nowait(task_id)
-                previous_sentence = accumulated_text_
-
-            bytes_queue.put_nowait(
-                {
-                    "type": "info",
-                    "device": device,
-                    "data": "END_OF_SENTENCE",
-                }
-            )
-
-            bytes_queue.put_nowait({"type": "info", "device": device, "data": "END"})
-            messages.append({"role": "assistant", "content": response_text})
-
-        except Exception as e:
-            print(f"Error in speech_stream_response: {e}")
-            error_message = "Oops, it looks like we encountered some sensitive content, how about we talk about other topics?"
+            messages.append({"role": "user", "content": utterance})
+            # response = client.client_azure_4o.chat.completions.create(
+            #     model="gpt-4o",
+            #     messages=messages,
+            #     stream=True,
+            # )
+            response = run_conversation(client, utterance, messages)
+            # send utterance to celery task
             task_id = create_emotion_detection_task(
-                error_message, user, "assistant", session_id, is_sensitive=True
+                f"{previous_sentence}\n\n{utterance}", user, "user", session_id
+            )
+            if device == "web":
+                bytes_queue.put_nowait(
+                    {
+                        "type": "json",
+                        "device": device,
+                        "data": {
+                            "type": "input",
+                            "audio_data": None,
+                            "text_data": utterance,
+                            "boundary": None,
+                            "task_id": task_id,
+                        },
+                    }
+                )
+                # add id to the queue
+                task_id_queue.put_nowait(task_id)
+        else:
+            messages_ = messages.copy()
+            messages_.append({"role": "user", "content": utterance})
+            # response = client.client_azure_4o.chat.completions.create(
+            #     model="gpt-4o",
+            #     messages=messages_,
+            #     stream=True,
+            # )
+
+            # response = client.agroq_client.chat.completions.create(
+            #     model="llama-3.2-90b-vision-preview",
+            #     messages=messages_,
+            #     temperature=0.5,
+            #     max_tokens=2048,
+            #     stream=True,
+            # )
+            response = client.agroq_client.chat.completions.create(
+                model="llama-3.2-90b-vision-preview",
+                messages=messages_,
+                temperature=0.5,
+                max_tokens=2048,
+                stream=True,
             )
 
+        accumulated_text = []
+        response_text = ""
+        is_first_chunk = True
+        previous_sentence = utterance
+
+        for chunk in response:
+            if self.is_interrupted or stop_event.is_set() or not self.connection_open:
+                self.is_interrupted = False
+                # clear bytes_queue
+                while not bytes_queue.empty():
+                    bytes_queue.get_nowait()
+                self.check_task_result_tasks.clear()
+                break
+
+            if chunk.choices and chunk.choices[0].delta.content:
+                chunk_text = emoji.replace_emoji(
+                    chunk.choices[0].delta.content, replace=""
+                )
+                accumulated_text.append(chunk_text)
+                response_text += chunk_text
+                sentences = chunk_text_by_clause("".join(accumulated_text))
+                sentences = [sentence for sentence in sentences if sentence]
+
+                if len(sentences) > 1:
+                    for sentence in sentences[:-1]:
+                        if is_first_chunk:
+                            boundary = "start"
+                        # elif chunk.choices[0]["finish_reason"] == "stop":
+                        #     boundary = "end"
+                        else:
+                            boundary = "mid"
+                        task_id = create_emotion_detection_task(
+                            f"{previous_sentence}\n\n{sentence}",
+                            user,
+                            "assistant",
+                            session_id,
+                        )
+                        azure_tts(
+                            sentence,
+                            boundary,
+                            task_id,
+                            user["toy_id"],
+                            device,
+                            bytes_queue,
+                        )
+
+                        bytes_queue
+                        if device == "web":
+                            task_id_queue.put_nowait(task_id)
+                            # task = asyncio.create_task(
+                            #     check_task_result_hardware(task_id, text_queue)
+                            # )
+                            # self.check_task_result_tasks.append(task)
+                        previous_sentence = sentence
+                        is_first_chunk = False
+
+                        bytes_queue.put_nowait(
+                            {
+                                "type": "info",
+                                "device": device,
+                                "data": "END_OF_SENTENCE",
+                            }
+                        )
+
+                    accumulated_text = [sentences[-1]]
+
+        if accumulated_text and (not self.is_interrupted or not stop_event.is_set()):
+            accumulated_text_ = "".join(accumulated_text)
+            task_id = create_emotion_detection_task(
+                f"{previous_sentence}\n\n{accumulated_text_}",
+                user,
+                "assistant",
+                session_id,
+            )
             azure_tts(
-                error_message,
+                accumulated_text_,
                 "end",
                 task_id,
                 user["toy_id"],
@@ -223,10 +313,40 @@ class ConversationManager:
             )
             if device == "web":
                 task_id_queue.put_nowait(task_id)
-            previous_sentence = error_message
+            previous_sentence = accumulated_text_
 
-            bytes_queue.put_nowait({"type": "info", "device": device, "data": "END"})
-            messages.append({"role": "assistant", "content": error_message})
+        bytes_queue.put_nowait(
+            {
+                "type": "info",
+                "device": device,
+                "data": "END_OF_SENTENCE",
+            }
+        )
+
+        bytes_queue.put_nowait({"type": "info", "device": device, "data": "END"})
+        messages.append({"role": "assistant", "content": response_text})
+
+        # except Exception as e:
+        #     print(f"Error in speech_stream_response: {e}")
+        #     error_message = "Oops, it looks like we encountered some sensitive content, how about we talk about other topics?"
+        #     task_id = create_emotion_detection_task(
+        #         error_message, user, "assistant", session_id, is_sensitive=True
+        #     )
+
+        #     azure_tts(
+        #         error_message,
+        #         "end",
+        #         task_id,
+        #         user["toy_id"],
+        #         device,
+        #         bytes_queue,
+        #     )
+        #     if device == "web":
+        #         task_id_queue.put_nowait(task_id)
+        #     previous_sentence = error_message
+
+        #     bytes_queue.put_nowait({"type": "info", "device": device, "data": "END"})
+        #     messages.append({"role": "assistant", "content": error_message})
 
         return previous_sentence
 
