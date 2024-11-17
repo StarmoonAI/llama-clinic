@@ -37,10 +37,16 @@ const submitToAPI = async (data: z.infer<typeof formSchema>) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        text:
+          "The parent reported a lifestyle factor update: " +
+          data.lifestyleFactor +
+          "on " +
+          dayjs().format("DD/MM/YYYY HH:mm"),
+      }),
     });
 
-    console.log("JSON.stringify(data)", JSON.stringify(data));
+    if (!response.ok) throw new Error("API call failed");
 
     if (!response.ok) throw new Error("API call failed");
 

@@ -136,10 +136,54 @@
   <data key="d1">"Paternal refers to the side of the family related to the father, indicating lineage and familial connections."</data>
   <data key="d2">chunk-7017ec8c978b0c28c7aa2f7b27498bf9</data>
 </node>
+<node id="&quot;BROTHER&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"Brother is a relative of the child mentioned, indicating a familial connection that may be relevant to the child's health history."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;WEWDSAGSFBV&quot;">
+  <data key="d0">"DISEASE NAME"</data>
+  <data key="d1">"wewdsagsfbv is a disease referenced in the context of the child's family history, suggesting a potential genetic or hereditary link."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;CHILD&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"The child is the subject of the report, whose health history is being discussed in relation to family history."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
+<node id="&quot;FAMILY HISTORY&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Family history refers to the medical history of relatives, which can provide insights into potential health risks for the child."</data>
+  <data key="d2">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</node>
 <edge source="&quot;GRANDMOTHER&quot;" target="&quot;PATERNAL&quot;">
   <data key="d3">8.0</data>
   <data key="d4">"Grandmother is identified as a paternal figure, indicating her relationship to the family through the father."</data>
   <data key="d5">"family relationship, lineage"</data>
   <data key="d6">chunk-7017ec8c978b0c28c7aa2f7b27498bf9</data>
+</edge>
+<edge source="&quot;BROTHER&quot;" target="&quot;WEWDSAGSFBV&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Brother's history of wewdsagsfbv may indicate a hereditary risk factor for the child, linking family history to potential health outcomes."</data>
+  <data key="d5">"family history, hereditary risk"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;BROTHER&quot;" target="&quot;CHILD&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"The child and Brother are related, indicating a familial connection that may influence the child's health outcomes."</data>
+  <data key="d5">"family connection, health influence"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;WEWDSAGSFBV&quot;" target="&quot;FAMILY HISTORY&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"The family history of wewdsagsfbv is relevant to understanding the child's potential health risks, indicating a connection between genetics and disease."</data>
+  <data key="d5">"genetic link, health risk"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
+</edge>
+<edge source="&quot;CHILD&quot;" target="&quot;FAMILY HISTORY&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"The child's health is being assessed in the context of family history, which may affect their risk for certain diseases."</data>
+  <data key="d5">"health assessment, risk factors"</data>
+  <data key="d6">chunk-097bda206e28f0f61d0086f13aa867a4</data>
 </edge>
 </graph></graphml>
