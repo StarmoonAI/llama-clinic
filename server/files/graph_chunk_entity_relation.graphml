@@ -1,0 +1,1150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d6" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d5" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d4" for="edge" attr.name="description" attr.type="string"/>
+<key id="d3" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d2" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d1" for="node" attr.name="description" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_type" attr.type="string"/>
+<graph edgedefault="undirected"><node id="&quot;COUGHS, COLDS AND SORE THROATS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Coughs, Colds and Sore Throats is a common condition in children, often presented as an illness or cold."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;COLIC&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Colic is a common condition in children, often presented as uncomfortable and fussy behavior, which generally settles by itself as the baby gets older."&lt;SEP&gt;"Colic is a symptom of cow's milk protein allergy, characterized by abdominal pain and discomfort."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;REFLUX&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Reflux is a normal condition in babies that usually settles by itself as the baby gets older."&lt;SEP&gt;"Reflux is a symptom of cow's milk protein allergy, characterized by the return of milk to the mouth."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;CORONAVIRUS INFECTION&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Coronavirus Infection is an infectious illness, often presented with symptoms such as coughs and colds."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;CONSTIPATION&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Constipation is a common condition in children, often presented as an illness or discomfort, with no clear explanation."&lt;SEP&gt;"Constipation is a condition that can be caused by formula fed babies if the formula is too strong."&lt;SEP&gt;"Constipation is a medical condition that is briefly mentioned in the text."&lt;SEP&gt;"Constipation is a symptom of cow's milk protein allergy, characterized by infrequent or difficult bowel movements."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;COWS MILK PROTEIN ALLERGY (CPMA)&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Cows Milk Protein Allergy (CPMA) is a rare condition in children, which can be identified through symptoms such as allergic reactions."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;APPENDICITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Appendicitis is a condition that requires urgent medical attention and can present symptoms such as sharp pain, and the baby may become pale or mottled."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;ROYAL COLLEGE OF PAEDIATRICS AND CHILD HEALTH&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"Royal College of Paediatrics and Child Health provides guidance and advice on the health and well-being of children."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;TUMMY ACHE&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Tummy Ache is a common condition in children, often presented as an illness or discomfort, with no clear explanation."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;VOMITING&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Vomiting is a common symptom in children, often presented as being sick and having bad tummies."&lt;SEP&gt;"Vomiting is a common symptom of Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;DIARRHEA&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Diarrhea is a common symptom in children, often presented as having runny poos."&lt;SEP&gt;"Diarrhea is a common symptom in children."&lt;SEP&gt;"Diarrhea is a common symptom of Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;GASTRITIS AND GASTROENTERITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Gastritis and Gastroenteritis are conditions that affect the stomach and intestines."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;TODDLER DIARRHEA&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Toddler Diarrhea is a common condition in children, often presented as having runny poos."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;GASTROINTESTINAL&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Gastrointestinal refers to the digestive system and the organs involved in the process of digestion."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;NUTRITION&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Nutrition refers to the intake of food and nutrients necessary for the growth and maintenance of the body."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;HEALTH VISITOR&quot;">
+  <data key="d0">"ROLE"</data>
+  <data key="d1">"Health Visitor is a professional role that provides guidance and support to parents and caregivers."&lt;SEP&gt;"Health Visitor is a professional who provides guidance and support for parents, recommending medical consultation if necessary."&lt;SEP&gt;"Health Visitor is a professional who provides health care to children."&lt;SEP&gt;"Health Visitor is a role mentioned in the text as a medical professional who can be consulted for advice on childhood illnesses."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;GP&quot;">
+  <data key="d0">"ROLE"</data>
+  <data key="d1">"GP is a general practitioner who provides medical care to children."&lt;SEP&gt;"GP is a general practitioner who provides medical consultation and guidance for patients."&lt;SEP&gt;"GP is a professional role that provides medical care and guidance to parents and caregivers."&lt;SEP&gt;"GP is a role mentioned in the text as a medical professional who can be consulted for advice on childhood illnesses."&lt;SEP&gt;"GP is the primary healthcare provider for children with fever or other symptoms."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d&lt;SEP&gt;chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;NHS 111&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"NHS 111 is a service that provides medical guidance and support to parents and caregivers."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;EMERGENCY SERVICES&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"Emergency Services provides urgent medical care and support in emergency situations."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;PARENTAL GUIDANCE&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Parental Guidance refers to the advice and support provided to parents and caregivers on the health and well-being of their children."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;CHILDHOOD DEVELOPMENT&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Childhood Development refers to the physical, emotional, and cognitive development of children."</data>
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</node>
+<node id="&quot;FEVER&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Fever is a common symptom in children, often caused by viral infections, such as a cold or sore throat virus."&lt;SEP&gt;"Fever is a symptom that can be a sign of illness, such as meningitis and viral infections."&lt;SEP&gt;"Fever is a symptom that may indicate illness, such as infection."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;MILD FEVER&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Mild Fever is a condition where the temperature is between 37.5-37.9°C, often caused by viral infections and settles over a few days."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;PARACETAMOL&quot;">
+  <data key="d0">"DRUG"</data>
+  <data key="d1">"Paracetamol can help in reducing fever and relieving pain associated with Croup."&lt;SEP&gt;"Paracetamol is a medication that can help relieve pain and fever in children."&lt;SEP&gt;"Paracetamol is a medication that is often used to treat fever and pain in children."&lt;SEP&gt;"Paracetamol is a medication used to alleviate symptoms, recommended at a specific dose for age."&lt;SEP&gt;"Paracetamol is a medicine that can be used to treat fever and pain in children."&lt;SEP&gt;"Paracetamol is a medicine that can help relieve a child's fever and distress."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;ANTIBIOTICS&quot;">
+  <data key="d0">"DRUG"</data>
+  <data key="d1">"Antibiotics are medicines prescribed by a doctor to treat bacterial infections, which can cause fevers in children."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;VIRAL INFECTIONS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Viral Infections, such as colds and coughs, are common in children and can cause symptoms like fever, cough, and runny nose."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;BACTERIAL INFECTIONS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Bacterial Infections can cause fevers in children, but are less common than viral infections and may require antibiotics."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;NON-BLANCHING RASH&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Non-Blanching Rash is a symptom that can be a sign of meningitis."&lt;SEP&gt;"Non-Blanching Rash is a worrying rash that doesn't fade with pressure, and can be a sign of serious illness, such as meningitis."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;MENINGITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Meningitis is a serious illness that can affect children."&lt;SEP&gt;"Meningitis is a serious infection that can cause symptoms like fever, headache, and rash, and requires urgent medical attention."&lt;SEP&gt;"Meningitis is a serious medical condition that is mentioned in the text as a possible cause of a rash."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;SEPSIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Sepsis is a life-threatening condition caused by a bacterial infection, and requires immediate medical attention."&lt;SEP&gt;"Sepsis is a serious illness that can affect children."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;ANXIETY&quot;">
+  <data key="d0">"EMOTION"</data>
+  <data key="d1">"Anxiety is a feeling of worry or concern, often experienced by parents when their child is unwell."&lt;SEP&gt;"Anxiety is an emotion that is mentioned in the text as a common response to a child's illness."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;UNHAPPINESS&quot;">
+  <data key="d0">"EMOTION"</data>
+  <data key="d1">"Unhappiness is a feeling of sadness or discontent, often experienced by children when they are in pain or uncomfortable."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;COLD&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Cold is a common symptom in children."&lt;SEP&gt;"Cold is a common viral infection that can cause symptoms like fever, cough, and runny nose."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;COUGHS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Coughs are a common symptom in children, often caused by viral infections like a cold or cough."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;SORE THROAT&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Sore Throat is a common symptom in children, often caused by viral infections like a cold or cough."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;RUNNY NOSE&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Runny Nose is a common symptom in children, often caused by viral infections like a cold or cough."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;SNEEZING&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Sneezing is a common symptom in children, often caused by viral infections like a cold or cough."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;SORE EYES&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Sore Eyes is a common symptom in children, often caused by viral infections like a cold or cough."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;TEMPERATURE GREATER THAN OR EQUAL TO 38˚C IN BABY AGED 0-3 MONTHS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Temperature greater than or equal to 38˚C in baby aged 0-3 months is a serious symptom that requires immediate medical attention."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;FITS/SEIZURES&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Fits/Seizures is a serious symptom that requires immediate medical attention."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;GLASS TEST&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Glass Test is a method to check for non-blanching rash, a sign of serious illness like meningitis."&lt;SEP&gt;"Glass Test is a method used to check if a rash is a symptom of meningitis."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;111&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"111 is the urgent health advice phone service and website that provides assistance for children with fever or other symptoms."</data>
+  <data key="d2">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</node>
+<node id="&quot;COUGHS AND COLDS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Coughs and Colds are common illnesses that children often get, typically during winter, and are usually caused by viruses."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;FLU&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Flu is a more serious illness that can cause high fever, body aches, and more severe symptoms than coughs and colds."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;IBUPROFEN&quot;">
+  <data key="d0">"DRUG"</data>
+  <data key="d1">"Ibuprofen can help in reducing fever and relieving pain associated with Croup."&lt;SEP&gt;"Ibuprofen is a medication that is often used to treat fever and pain in children, but is not advised for use in children with chickenpox."&lt;SEP&gt;"Ibuprofen is a medication used to alleviate symptoms, recommended at a specific dose for age."&lt;SEP&gt;"Ibuprofen is a medicine that can be used to treat fever and pain in children."&lt;SEP&gt;"Ibuprofen is another medication that can help with pain and fever relief in children."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;FLU IMMUNISATION&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Flu Immunisation is a vaccination that can help protect children from getting flu."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;ASTHMA&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Asthma is a long-term condition that affects the airways and can cause symptoms such as wheezing, coughing, and shortness of breath."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;INHALERS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Inhalers are a type of medication that can help relieve asthma symptoms and are usually used with a spacer device."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;BRONCHIOLITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Bronchiolitis is a viral infection that affects babies and toddlers and can cause symptoms such as a cough, fever, and difficulty breathing."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;CROUP&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Croup is a condition that affects the voice box and can cause a barking cough, especially in children."&lt;SEP&gt;"Croup is a viral infection causing swelling of the voice box, which gives it the typical barking seal-like cough and hoarse, croaky voice."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;STRIDOR&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Stridor is a high-pitched noise on breathing in, which indicates a potential breathing problem."&lt;SEP&gt;"Stridor is a high-pitched sound made while breathing in, which can be a symptom of croup or other conditions."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;STEROID MEDICATION&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Steroid medication can be used to help relieve symptoms of croup and other conditions."&lt;SEP&gt;"Steroid medication from a GP can be helpful in reducing inflammation in the voice box and alleviating symptoms."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;WORRY&quot;">
+  <data key="d0">"EMOTION"</data>
+  <data key="d1">"Worry is a common emotion that parents may experience when their child is unwell or experiencing symptoms."&lt;SEP&gt;"Worry is an emotion that is mentioned in the text as a common response to a child's illness."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;RELIEF&quot;">
+  <data key="d0">"EMOTION"</data>
+  <data key="d1">"Relief is an emotion that parents may experience when their child is feeling better or receiving effective treatment."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;VIRUS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Virus is a type of microorganism that can cause illness and infection."</data>
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</node>
+<node id="&quot;BARKING COUGH&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Barking cough is a typical symptom of Croup, but it can also be present in other conditions."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;FEAR AND ANXIETY&quot;">
+  <data key="d0">"EMOTION"</data>
+  <data key="d1">"Parents and children may experience fear and anxiety due to the symptoms of Croup."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;GASTROENTERITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Gastroenteritis is a condition that causes vomiting, diarrhea, and stomach cramps in children, which can lead to dehydration."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;DEHYDRATION&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Dehydration is a potential complication of Gastroenteritis, which can be life-threatening if left untreated."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;TUMMY CRAMPS&quot;">
+  <data key="d0">"SYMPTOM"&gt;</data>
+  <data key="d1">"Tummy cramps are a common symptom of Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;HOARSE VOICE&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Hoarse voice is a common symptom of Croup."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;RUNNY POOS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Runny poos are a common symptom of Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;BLOOD OR SLIME IN THE POO&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Blood or slime in the poo is an abnormal symptom that requires medical attention."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;POO STRAINING&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Poo straining is an abnormal symptom that requires medical attention."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;INFANTS UNDER 6 MONTHS&quot;">
+  <data key="d0">"POPULATION"</data>
+  <data key="d1">"Infants under 6 months are more likely to become dehydrated due to Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;GPS&quot;">
+  <data key="d0">"PROFESSIONAL"</data>
+  <data key="d1">"GPs can provide medical advice and treatment for various conditions including Croup and Gastroenteritis."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;HEALTH VISITORS&quot;">
+  <data key="d0">"PROFESSIONAL"</data>
+  <data key="d1">"Health Visitors can provide medical advice and treatment for various conditions including constipation and nutritional deficiencies."</data>
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</node>
+<node id="&quot;RASH&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Rash is a symptom that can be caused by various conditions, including meningitis and viral infections."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;NAPPY RASH&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Nappy Rash is a common condition that affects babies, caused by irritation from wee, poo, soaps, and bubble bath."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;CHICKEN POX&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Chicken Pox is a highly infectious disease that causes a rash and is usually self-limiting."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;HAND, FOOT AND MOUTH&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Hand, Foot and Mouth is a common viral infection that causes mouth ulcers and spots on the hands and feet."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;CALAMINE LOTION&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Calamine Lotion is a topical treatment that can be used to soothe itchy skin caused by chickenpox."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;TEMPERATURE&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Temperature is a symptom that can be a sign of illness, such as meningitis."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;MOUTH ULCERS&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Mouth Ulcers are a symptom that can be caused by various conditions, including Hand, Foot and Mouth."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;BABY&quot;">
+  <data key="d0">"ROLE"</data>
+  <data key="d1">"Baby is a role mentioned in the text, particularly in relation to nappy rash and other childhood illnesses."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;PARENT&quot;">
+  <data key="d0">"ROLE"</data>
+  <data key="d1">"Parent is a role mentioned in the text, particularly in relation to caring for a child with an illness."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;SEPARATE TOWELS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Separate Towels is a treatment that can be used to prevent the spread of infection."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;COOLING GELS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Cooling Gels is a treatment that can be used to soothe itchy skin caused by chickenpox."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;FLUIDS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Fluids is a treatment that can be used to help a child recover from an illness."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;SOFT FOODS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Soft Foods is a treatment that can be used to help a child recover from an illness."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;BICARBONATE OF SODA&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Bicarbonate of Soda is a treatment that can be used to soothe itchy skin caused by chickenpox."</data>
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</node>
+<node id="&quot;WARTS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Warts are growths on the skin that can be painful or cause discomfort, requiring medical attention if severe."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;ECZEMA&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Eczema is a skin condition characterized by dry areas, often a symptom of an allergy."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"CMPA is a specific allergy found in babies and young children, more common in formula-fed babies, and can cause troublesome symptoms."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;DIARRHOEA&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Diarrhoea is a symptom of cow's milk protein allergy, characterized by frequent and loose bowel movements."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;BLOOD IN THE POO&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Blood in the poo is a symptom of cow's milk protein allergy, indicating a possible allergic reaction."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;POOR WEIGHT GAIN&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Poor weight gain is a symptom of cow's milk protein allergy, indicating a possible nutritional deficiency."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;INFECTIVE CONJUNCTIVITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Infective conjunctivitis is a viral or bacterial infection of the eye, usually not requiring antibiotic treatment."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;ALLERGIC CONJUNCTIVITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Allergic conjunctivitis is a type of conjunctivitis caused by an allergic reaction, relieved by antihistamine medicine and avoiding allergens."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;IRRITANT CONJUNCTIVITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Irritant conjunctivitis is a type of conjunctivitis caused by an irritant, relieved by removing the irritant and using soothing remedies."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;TEETHING&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Teething is a common symptom in babies, characterized by discomfort, dribbling, biting, and flushing of the cheeks and gums."&lt;SEP&gt;"Teething is a stage of infant development, characterized by discomfort, dribbling, and gnawing."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;COW'S MILK&quot;">
+  <data key="d0">"SUBSTANCE"</data>
+  <data key="d1">"Cow's milk is a common allergen, present in formula milk and breast milk if the mother consumes it."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;SOYA MILK&quot;">
+  <data key="d0">"SUBSTANCE"</data>
+  <data key="d1">"Soya milk is an alternative milk, not suitable for children and not recommended as a replacement for cow's milk."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;IRRITANT&quot;">
+  <data key="d0">"SUBSTANCE"</data>
+  <data key="d1">"Irritant is a substance that can cause discomfort or allergic reactions, such as in irritant conjunctivitis."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;TEARS&quot;">
+  <data key="d0">"SUBSTANCE"</data>
+  <data key="d1">"Tears are natural bodily fluids that help to lubricate and clean the eyes, and can be affected by conjunctivitis."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;CONJUNCTIVITIS&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Conjunctivitis is an inflammation or infection of the conjunctiva, a thin membrane covering the white part of the eye and the inside of the eyelids."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;SYMPTOMS OF TEETHING&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Symptoms of teething include discomfort, dribbling, flushed cheeks, and gnawing, which can be relieved with painkillers or soothing measures."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;OPTICIAN&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"Optician is an eye care professional who provides vision testing and eye care services for children."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;APPOINTMENT WITH AN OPTICIAN&quot;">
+  <data key="d0">"EVENT"</data>
+  <data key="d1">"An appointment with an optician is a regular visit for eye testing, especially recommended for children."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;EYE SIGHT TESTS&quot;">
+  <data key="d0">"EVENT"</data>
+  <data key="d1">"Eye sight tests are regular examinations of the eyes for children to monitor their vision and detect any problems early."</data>
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+</node>
+<node id="&quot;DISEASE&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Disease refers to a range of illnesses that can affect children, including pneumonia, meningitis, and sepsis."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;DISCOMFORT&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Discomfort is a symptom that babies may experience during teething."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;PREGNANCY&quot;">
+  <data key="d0">"CONDITION"</data>
+  <data key="d1">"Pregnancy is a condition that can benefit from immunization against certain illnesses."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;WHOOPING COUGH&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Whooping Cough is a serious illness that can be prevented through immunization."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;BURNS&quot;">
+  <data key="d0">"INJURY"</data>
+  <data key="d1">"Burns are a type of injury that can occur through electrical or other means, requiring immediate attention."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;ANTIHISTAMINE&quot;">
+  <data key="d0">"DRUG"</data>
+  <data key="d1">"Antihistamine is a medicine that can be used to treat itchy rashes and allergic reactions."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;ORAL REHYDRATING SOLUTION&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Oral Rehydrating Solution is a treatment for vomiting and diarrhea."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;BABIES&quot;">
+  <data key="d0">"GENERAL TERM"</data>
+  <data key="d1">"Babies is a general term referring to infants."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;CHILDREN&quot;">
+  <data key="d0">"GENERAL TERM"</data>
+  <data key="d1">"Children is a general term referring to minors."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;IMMUNISATION&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Immunisation is a treatment that helps prevent diseases in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;PNEUMONIA&quot;">
+  <data key="d0">"DISEASE"</data>
+  <data key="d1">"Pneumonia is a serious illness that can affect children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;NHS&quot;">
+  <data key="d0">"ORGANISATION"</data>
+  <data key="d1">"NHS is a healthcare organisation in the UK."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;MEDICAL CUPBOARD&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Medical Cupboard is a collection of supplies for treating common illnesses and injuries in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;THERMOMETER&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Thermometer is a tool used to measure body temperature in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;STICKY PLASTERS&quot;">
+  <data key="d0">"TREATMENT"</data>
+  <data key="d1">"Sticky Plasters is a treatment for small cuts in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;LOCAL PHARMACY&quot;">
+  <data key="d0">"ORGANISATION"</data>
+  <data key="d1">"Local Pharmacy is a place where parents can buy medications for their children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;COUGH&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Cough is a common symptom in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;SNUFFLE&quot;">
+  <data key="d0">"SYMPTOM"</data>
+  <data key="d1">"Snuffle is a common symptom in children."</data>
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</node>
+<node id="&quot;URGENT HELP&quot;">
+  <data key="d2">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+  <data key="d1">"Emergency Services provide urgent medical care and support in emergency situations."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;DIFFICULTY FEEDING&quot;">
+  <data key="d2">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+  <data key="d1">"Bronchiolitis can cause Difficulty Feeding in babies and toddlers, especially during the early stages."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;FORMULA FED BABIES&quot;">
+  <data key="d2">chunk-23e6a6c977049a060f32d51180e4317d</data>
+  <data key="d1">"Constipation can be caused by formula fed babies if the formula is too strong."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;ITCHY SKIN&quot;">
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+  <data key="d1">"Calamine Lotion is a topical treatment that can be used to soothe itchy skin caused by chickenpox."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;PARENTAL WORRY&quot;">
+  <data key="d2">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+  <data key="d1">"Anxiety is a common emotional response to a child's illness, leading to parental worry."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;ANTIBIOTIC EYE DROPS&quot;">
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+  <data key="d1">"Antibiotic eye drops are used to treat infective conjunctivitis, but only in severe cases."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;ANTIHISTAMINE MEDICINE&quot;">
+  <data key="d2">chunk-13557de0ed4445972b2d43199ad38454</data>
+  <data key="d1">"Antihistamine medicine is used to treat allergic conjunctivitis, alleviating symptoms."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;IMMUNIZATION&quot;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Immunization can help prevent disease in children."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;TREATMENT&quot;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Burns require immediate attention and treatment."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;CHICKENPOX&quot;&gt;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Chickenpox can cause hives in children."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;HIVES&quot;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Chickenpox can cause hives in children."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;ALLERGIC REACTIONS&quot;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Allergic Reactions can cause hives in children."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;ELECTRICAL BURNS&quot;&gt;">
+  <data key="d2">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+  <data key="d1">"Electrical Burns require immediate attention and treatment."</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<edge source="&quot;COUGHS, COLDS AND SORE THROATS&quot;" target="&quot;CORONAVIRUS INFECTION&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Coronavirus Infection can be presented with symptoms such as coughs and colds."</data>
+  <data key="d5">"symptoms, illness"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;COLIC&quot;" target="&quot;REFLUX&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Colic can be presented as uncomfortable and fussy behavior."</data>
+  <data key="d5">"symptoms, illness"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;COLIC&quot;" target="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Colic is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;REFLUX&quot;" target="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Reflux is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;CORONAVIRUS INFECTION&quot;" target="&quot;CONSTIPATION&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Coronavirus Infection can be presented with symptoms such as constipation."</data>
+  <data key="d5">"symptoms, illness"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;CONSTIPATION&quot;" target="&quot;FORMULA FED BABIES&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Constipation can be caused by formula fed babies if the formula is too strong."</data>
+  <data key="d5">"causality, nutritional deficiencies"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;CONSTIPATION&quot;" target="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Constipation is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;ROYAL COLLEGE OF PAEDIATRICS AND CHILD HEALTH&quot;" target="&quot;PARENTAL GUIDANCE&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Royal College of Paediatrics and Child Health provides guidance on the health and well-being of children."</data>
+  <data key="d5">"guidance, health"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;TUMMY ACHE&quot;" target="&quot;VOMITING&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Tummy Ache can be presented with symptoms such as vomiting and having bad tummies."</data>
+  <data key="d5">"symptoms, illness"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;VOMITING&quot;" target="&quot;GASTROENTERITIS&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"Gastroenteritis can cause Vomiting."</data>
+  <data key="d5">"typical symptom, symptomatology"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;DIARRHEA&quot;" target="&quot;GASTROENTERITIS&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"Diarrhea can be a symptom of Gastroenteritis."&lt;SEP&gt;"Gastroenteritis can cause Diarrhea."</data>
+  <data key="d5">"symptoms, illness"&lt;SEP&gt;"typical symptom, symptomatology"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;HEALTH VISITOR&quot;" target="&quot;PARENTAL GUIDANCE&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Health Visitor provides guidance and support to parents and caregivers."</data>
+  <data key="d5">"guidance, health"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;HEALTH VISITOR&quot;" target="&quot;GP&quot;">
+  <data key="d3">16.0</data>
+  <data key="d4">"GP and Health Visitor are professionals who work together to provide health care to children."&lt;SEP&gt;"Health Visitor and GP work together to provide medical guidance and consultation for patients."</data>
+  <data key="d5">"collaboration, healthcare"&lt;SEP&gt;"medical guidance, consultation"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;GP&quot;" target="&quot;PARENTAL GUIDANCE&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"GP provides medical care and guidance to parents and caregivers."</data>
+  <data key="d5">"guidance, health"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;GP&quot;" target="&quot;111&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"GP and 111 provide urgent health advice and assistance for children with fever or other symptoms."</data>
+  <data key="d5">"health care provider, assistance"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;NHS 111&quot;" target="&quot;EMERGENCY SERVICES&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"NHS 111 provides urgent medical guidance and support in emergency situations."</data>
+  <data key="d5">"emergency, guidance"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;EMERGENCY SERVICES&quot;" target="&quot;URGENT HELP&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Emergency Services provide urgent medical care and support in emergency situations."</data>
+  <data key="d5">"emergency, help"</data>
+  <data key="d6">chunk-5f975cbdca96b9f9b45dfad42c1d546d</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;MILD FEVER&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Fever and Mild Fever are related as Mild Fever is a type of Fever with a temperature between 37.5-37.9°C."</data>
+  <data key="d5">"symptom progression"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;PARACETAMOL&quot;">
+  <data key="d3">22.0</data>
+  <data key="d4">"Paracetamol can be used to treat fever in children."&lt;SEP&gt;"Paracetamol is often used to treat fever in children."&lt;SEP&gt;"Paracetamol is used to relieve Fever in children."</data>
+  <data key="d5">"drug-symptom relationship, pain relief"&lt;SEP&gt;"medication, symptom relief"&lt;SEP&gt;"medication, symptom relief"8</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b&lt;SEP&gt;chunk-3b0e1c197e6c273991fd696d1a2bb556&lt;SEP&gt;chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;VIRAL INFECTIONS&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Viral Infections are a common cause of Fever in children."</data>
+  <data key="d5">"infection, symptom cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;COLD&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Cold is a common cause of Fever in children."</data>
+  <data key="d5">"infection, symptom cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;IBUPROFEN&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"Ibuprofen is often used to treat fever in children, but is not advised for use in children with chickenpox."</data>
+  <data key="d5">"drug-symptom relationship, pain relief, cautionary note"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;FEVER&quot;" target="&quot;IMMUNIZATION&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Fever can be a symptom that may necessitate delaying immunization, but otherwise, immunization is not compromised."</data>
+  <data key="d5">"symptomatology, timing of immunization" 6</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;PARACETAMOL&quot;" target="&quot;FLU&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Flu can be treated with Paracetamol to relieve symptoms such as fever and body aches."</data>
+  <data key="d5">"treatment, relief"</data>
+  <data key="d6">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</edge>
+<edge source="&quot;PARACETAMOL&quot;" target="&quot;CROUP&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"Paracetamol can be used to reduce fever and pain in Croup."</data>
+  <data key="d5">"treatment, alleviation"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;PARACETAMOL&quot;" target="&quot;WARTS&quot;">
+  <data key="d3">5.0</data>
+  <data key="d4">"Paracetamol is used to alleviate symptoms of warts, but not a direct treatment for warts."</data>
+  <data key="d5">"symptom relief, treatment"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;PARACETAMOL&quot;" target="&quot;LOCAL PHARMACY&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Local Pharmacy is a place where parents can buy medications such as Paracetamol for their children."</data>
+  <data key="d5">"location, medication"7</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;ANTIBIOTICS&quot;" target="&quot;BACTERIAL INFECTIONS&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Antibiotics are prescribed to treat Bacterial Infections, which can cause fever in children."</data>
+  <data key="d5">"treatment, infection control"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;VIRAL INFECTIONS&quot;" target="&quot;COUGHS&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Coughs can be a symptom of Viral Infections in children."</data>
+  <data key="d5">"symptom, infection cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;VIRAL INFECTIONS&quot;" target="&quot;SORE THROAT&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Sore Throat can be a symptom of Viral Infections in children."</data>
+  <data key="d5">"symptom, infection cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;VIRAL INFECTIONS&quot;" target="&quot;RUNNY NOSE&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Runny Nose can be a symptom of Viral Infections in children."</data>
+  <data key="d5">"symptom, infection cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;VIRAL INFECTIONS&quot;" target="&quot;SNEEZING&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Sneezing can be a symptom of Viral Infections in children."</data>
+  <data key="d5">"symptom, infection cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;VIRAL INFECTIONS&quot;" target="&quot;SORE EYES&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Sore Eyes can be a symptom of Viral Infections in children."</data>
+  <data key="d5">"symptom, infection cause"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;NON-BLANCHING RASH&quot;" target="&quot;MENINGITIS&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Non-Blanching Rash can be a sign of Meningitis, a serious infection that requires urgent medical attention."</data>
+  <data key="d5">"symptom, disease indicator"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;SEPSIS&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"Meningitis can lead to Sepsis, a life-threatening condition caused by a bacterial infection."</data>
+  <data key="d5">"disease progression, complication"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;TEMPERATURE GREATER THAN OR EQUAL TO 38˚C IN BABY AGED 0-3 MONTHS&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Temperature greater than or equal to 38˚C in baby aged 0-3 months is a serious symptom that can be a sign of Meningitis."</data>
+  <data key="d5">"symptom, disease indicator"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;FITS/SEIZURES&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Fits/Seizures is a serious symptom that can be a sign of Meningitis."</data>
+  <data key="d5">"symptom, disease indicator"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;GLASS TEST&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Glass Test is a method to check for non-blanching rash, a sign of Meningitis."</data>
+  <data key="d5">"treatment, disease diagnosis"</data>
+  <data key="d6">chunk-a15dbc24abf352cfa3669096264dec9b</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;RASH&quot;">
+  <data key="d3">18.0</data>
+  <data key="d4">"Meningitis can cause a rash, which is a symptom of the disease."</data>
+  <data key="d5">"disease-symptom relationship, medical condition"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;MENINGITIS&quot;" target="&quot;TEMPERATURE&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Meningitis can cause a high temperature, which is a symptom of the disease."</data>
+  <data key="d5">"disease-symptom relationship, medical condition"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;ANXIETY&quot;" target="&quot;PARENTAL WORRY&quot;">
+  <data key="d3">14.0</data>
+  <data key="d4">"Anxiety is a common emotional response to a child's illness, leading to parental worry."</data>
+  <data key="d5">"emotion-emotion relationship, emotional response"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;COLD&quot;" target="&quot;SNUFFLE&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Cold and snuffle are common symptoms that can affect children."</data>
+  <data key="d5">"cause and effect, symptomatology"6</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;COUGHS AND COLDS&quot;" target="&quot;FLU&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Coughs and Colds can be a precursor to Flu, which is a more serious illness."</data>
+  <data key="d5">"illness progression, severity"</data>
+  <data key="d6">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</edge>
+<edge source="&quot;IBUPROFEN&quot;" target="&quot;WARTS&quot;">
+  <data key="d3">5.0</data>
+  <data key="d4">"Ibuprofen is used to alleviate symptoms of warts, but not a direct treatment for warts."</data>
+  <data key="d5">"symptom relief, treatment"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;ASTHMA&quot;" target="&quot;INHALERS&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Asthma can be treated with Inhalers, which can help relieve symptoms and control the condition."</data>
+  <data key="d5">"treatment, management"</data>
+  <data key="d6">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</edge>
+<edge source="&quot;BRONCHIOLITIS&quot;" target="&quot;DIFFICULTY FEEDING&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Bronchiolitis can cause Difficulty Feeding in babies and toddlers, especially during the early stages."</data>
+  <data key="d5">"condition, complication"</data>
+  <data key="d6">chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</edge>
+<edge source="&quot;CROUP&quot;" target="&quot;STRIDOR&quot;">
+  <data key="d3">26.0</data>
+  <data key="d4">"Croup can cause Stridor, a high-pitched noise on breathing in."&lt;SEP&gt;"Croup can cause Stridor, a high-pitched sound made while breathing in."</data>
+  <data key="d5">"causality, symptomatology"&lt;SEP&gt;"condition, symptom"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d&lt;SEP&gt;chunk-3265ee046c982a3f161710e69c8ee1ec</data>
+</edge>
+<edge source="&quot;CROUP&quot;" target="&quot;BARKING COUGH&quot;">
+  <data key="d3">16.0</data>
+  <data key="d4">"Croup is characterized by a Barking cough."</data>
+  <data key="d5">"typical symptom, identification"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;CROUP&quot;" target="&quot;STEROID MEDICATION&quot;">
+  <data key="d3">14.0</data>
+  <data key="d4">"Steroid Medication can be used to treat Croup."</data>
+  <data key="d5">"treatment, alleviation"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;CROUP&quot;" target="&quot;FEAR AND ANXIETY&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"Croup can cause Fear and Anxiety in parents and children."</data>
+  <data key="d5">"emotional impact, psychological response"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;CROUP&quot;" target="&quot;HOARSE VOICE&quot;">
+  <data key="d3">5.0</data>
+  <data key="d4">"Croup can cause a Hoarse voice."</data>
+  <data key="d5">"typical symptom, symptomatology"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;GASTROENTERITIS&quot;" target="&quot;DEHYDRATION&quot;">
+  <data key="d3">20.0</data>
+  <data key="d4">"Gastroenteritis can cause Dehydration, which is a life-threatening condition."</data>
+  <data key="d5">"causality, complications"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;GASTROENTERITIS&quot;" target="&quot;TUMMY CRAMPS&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"Gastroenteritis can cause Tummy cramps."</data>
+  <data key="d5">"typical symptom, symptomatology"</data>
+  <data key="d6">chunk-23e6a6c977049a060f32d51180e4317d</data>
+</edge>
+<edge source="&quot;RASH&quot;" target="&quot;NAPPY RASH&quot;">
+  <data key="d3">16.0</data>
+  <data key="d4">"Nappy Rash is a common condition that causes a rash, which is a symptom of the condition."</data>
+  <data key="d5">"disease-symptom relationship, skin condition"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;RASH&quot;" target="&quot;CHICKEN POX&quot;">
+  <data key="d3">18.0</data>
+  <data key="d4">"Chicken Pox causes a rash, which is a symptom of the disease."</data>
+  <data key="d5">"disease-symptom relationship, infectious disease"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;RASH&quot;" target="&quot;HAND, FOOT AND MOUTH&quot;">
+  <data key="d3">16.0</data>
+  <data key="d4">"Hand, Foot and Mouth causes a rash, which is a symptom of the disease."</data>
+  <data key="d5">"disease-symptom relationship, viral infection"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;HAND, FOOT AND MOUTH&quot;" target="&quot;MOUTH ULCERS&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Hand, Foot and Mouth causes mouth ulcers, which is a symptom of the disease."</data>
+  <data key="d5">"disease-symptom relationship, viral infection"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;CALAMINE LOTION&quot;" target="&quot;ITCHY SKIN&quot;">
+  <data key="d3">16.0</data>
+  <data key="d4">"Calamine Lotion is a topical treatment that can be used to soothe itchy skin caused by chickenpox."</data>
+  <data key="d5">"treatment-symptom relationship, skin condition"</data>
+  <data key="d6">chunk-3b0e1c197e6c273991fd696d1a2bb556</data>
+</edge>
+<edge source="&quot;ECZEMA&quot;" target="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Eczema is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;ECZEMA&quot;" target="&quot;COW'S MILK&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Cow's milk is a common allergen associated with eczema, a skin condition characterized by dry areas."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;" target="&quot;DIARRHOEA&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Diarrhoea is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;" target="&quot;BLOOD IN THE POO&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Blood in the poo is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;" target="&quot;POOR WEIGHT GAIN&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Poor weight gain is a symptom of CMPA, indicating an allergic reaction to cow's milk."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;COW'S MILK PROTEIN ALLERGY (CMPA)&quot;" target="&quot;SOYA MILK&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Soya milk is not recommended as a replacement for cow's milk, which is a common allergen in CMPA."</data>
+  <data key="d5">"dietary alternative, restriction"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;INFECTIVE CONJUNCTIVITIS&quot;" target="&quot;ANTIBIOTIC EYE DROPS&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"Antibiotic eye drops are used to treat infective conjunctivitis, but only in severe cases."</data>
+  <data key="d5">"treatment, severity"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;ALLERGIC CONJUNCTIVITIS&quot;" target="&quot;ANTIHISTAMINE MEDICINE&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Antihistamine medicine is used to treat allergic conjunctivitis, alleviating symptoms."</data>
+  <data key="d5">"treatment, symptom relief"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;IRRITANT CONJUNCTIVITIS&quot;" target="&quot;IRRITANT&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Irritant is a substance that causes discomfort or allergic reactions, such as in irritant conjunctivitis."</data>
+  <data key="d5">"allergic reaction, symptom"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;TEETHING&quot;" target="&quot;DISCOMFORT&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Teething can cause discomfort in babies."</data>
+  <data key="d5">"cause and effect, symptomatology"</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;TEARS&quot;" target="&quot;CONJUNCTIVITIS&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Tears are natural bodily fluids that help to lubricate and clean the eyes, and can be affected by conjunctivitis."</data>
+  <data key="d5">"eye health, infection"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;OPTICIAN&quot;" target="&quot;APPOINTMENT WITH AN OPTICIAN&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Optician is an eye care professional who provides regular eye testing and vision testing for children."</data>
+  <data key="d5">"eye care, vision testing"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;OPTICIAN&quot;" target="&quot;EYE SIGHT TESTS&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"Eye sight tests are regular examinations of the eyes for children, provided by an optician."</data>
+  <data key="d5">"eye care, vision testing"</data>
+  <data key="d6">chunk-13557de0ed4445972b2d43199ad38454</data>
+</edge>
+<edge source="&quot;DISEASE&quot;" target="&quot;IMMUNIZATION&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Immunization can help prevent disease in children."</data>
+  <data key="d5">"prevention, protection"</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;DISEASE&quot;" target="&quot;CHILDREN&quot;">
+  <data key="d3">7.0</data>
+  <data key="d4">"Children can be affected by various diseases, including pneumonia, meningitis, and sepsis."</data>
+  <data key="d5">"cause and effect, symptomatology"&gt;</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;PREGNANCY&quot;" target="&quot;WHOOPING COUGH&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Immunization against Whooping Cough can protect the baby during pregnancy."</data>
+  <data key="d5">"protection, prevention"&gt;</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;WHOOPING COUGH&quot;" target="&quot;COUGH&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Cough is a symptom of Whooping Cough."</data>
+  <data key="d5">"cause and effect, symptomatology"8</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;BURNS&quot;" target="&quot;TREATMENT&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"Burns require immediate attention and treatment."</data>
+  <data key="d5">"urgency, medical attention"</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;BABIES&quot;" target="&quot;IMMUNISATION&quot;">
+  <data key="d3">9.0</data>
+  <data key="d4">"Immunisation is a treatment that helps prevent diseases in babies."</data>
+  <data key="d5">"prevention, protection"</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;NHS&quot;" target="&quot;MEDICAL CUPBOARD&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"NHS provides guidance on what should be included in a Medical Cupboard."</data>
+  <data key="d5">"guidance, health education"8</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;TREATMENT&quot;" target="&quot;ELECTRICAL BURNS&quot;&gt;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Electrical Burns require immediate attention and treatment."</data>
+  <data key="d5">"urgency, medical attention"&gt;10</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;CHICKENPOX&quot;&gt;" target="&quot;HIVES&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Chickenpox can cause hives in children."</data>
+  <data key="d5">"cause and effect, symptomatology"&gt;7</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+<edge source="&quot;HIVES&quot;" target="&quot;ALLERGIC REACTIONS&quot;">
+  <data key="d3">1.0</data>
+  <data key="d4">"Allergic Reactions can cause hives in children."</data>
+  <data key="d5">"cause and effect, symptomatology"&gt;7</data>
+  <data key="d6">chunk-88c830128154bcd3a6bb5aa3703845f3</data>
+</edge>
+</graph></graphml>

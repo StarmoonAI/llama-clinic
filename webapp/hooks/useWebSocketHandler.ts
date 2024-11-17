@@ -263,7 +263,7 @@ export const useWebSocketHandler = (selectedUser: IUser) => {
         const wsUrl =
             process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
                 ? "wss://api.llama.app/llama"
-                : "ws://localhost:8000/llama";
+                : "ws://localhost:8000/starmoon";
         // // console.log("opening ws connection", wsUrl);
         setSocketUrl(wsUrl);
     }, []);
