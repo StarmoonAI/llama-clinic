@@ -16,6 +16,7 @@ import { Plus } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import dayjs from "dayjs";
 
 const formSchema = z.object({
     lifestyleFactor: z.string().min(5, {
@@ -31,15 +32,21 @@ type LifestyleFactorsEntry = {
 
 const submitToAPI = async (data: z.infer<typeof formSchema>) => {
     try {
-        // const response = await fetch("http://localhost:8000/api/rag_text", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(data),
-        // });
+        const response = await fetch("http://localhost:8000/api/rag_text", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                text:
+                    "The parent reported a lifestyle factor update: " +
+                    data.lifestyleFactor +
+                    "on " +
+                    dayjs().format("DD/MM/YYYY HH:mm"),
+            }),
+        });
 
-        // if (!response.ok) throw new Error("API call failed");
+        if (!response.ok) throw new Error("API call failed");
 
         // Store in localStorage
         const lifestyleFactorsEntry: LifestyleFactorsEntry = {

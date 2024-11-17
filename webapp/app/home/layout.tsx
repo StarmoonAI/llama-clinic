@@ -52,7 +52,7 @@ export default async function RootLayout({
     }
 
     return (
-        <div className="flex flex-1 flex-col mx-auto w-full max-w-screen-lg gap-10 py-2 sm:py-4 md:flex-row">
+        <div className="flex flex-1 flex-col mx-auto w-full max-w-screen-xl gap-10 py-2 sm:py-4 md:flex-row">
             <aside className="w-full md:w-[270px] sm:py-6 pt-2 md:overflow-y-auto md:fixed md:h-screen">
                 <SidebarNav items={sidebarNavItems} />
             </aside>

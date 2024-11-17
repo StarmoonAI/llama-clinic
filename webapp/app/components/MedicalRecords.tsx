@@ -24,7 +24,6 @@ const FileUpload: React.FC<FileUploadProps> = ({
     onError,
     maxFileSize = 10 * 1024 * 1024, // 10MB default
 }) => {
-    const supabase = createClient();
     const [files, setFiles] = useState<File[]>([]);
     const [uploading, setUploading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
@@ -33,19 +32,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
     const fetchMedicalRecords = async () => {
         try {
-            const { data, error } = await supabase.storage.from("rag").list();
-            console.log(data);
-            if (error) throw error;
-
-            const transformedData = (data || []).map((file) => ({
-                ...file,
-                metadata: {
-                    size: file.metadata.size || 0,
-                    mimetype: file.metadata.mimetype || "",
-                },
-            }));
-
-            setMedicalRecords(transformedData);
+            const localRecords = localStorage.getItem("medicalRecords");
+            const records = localRecords ? JSON.parse(localRecords) : [];
+            setMedicalRecords(records);
         } catch (err) {
             console.error("Error fetching medical records:", err);
             toast({
@@ -99,6 +88,23 @@ const FileUpload: React.FC<FileUploadProps> = ({
             });
 
             if (response.ok) {
+                // Store minimal file info in local storage
+                const newRecords = files.map((file) => ({
+                    id: crypto.randomUUID(),
+                    name: file.name,
+                    created_at: new Date().toISOString(),
+                }));
+
+                // Get existing records and append new ones
+                const existingRecords = JSON.parse(
+                    localStorage.getItem("medicalRecords") || "[]"
+                );
+                const updatedRecords = [...existingRecords, ...newRecords];
+                localStorage.setItem(
+                    "medicalRecords",
+                    JSON.stringify(updatedRecords)
+                );
+
                 setProgress(100);
                 setFiles([]);
                 fetchMedicalRecords();
@@ -168,7 +174,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
             </div>
             <div className="mt-8">
                 <h2 className="text-xl font-semibold mb-4">Uploaded Records</h2>
-                {medicalRecords.length === 1 ? (
+                {medicalRecords.length === 0 ? (
                     <p className="text-gray-500">No records found</p>
                 ) : (
                     <div className="space-y-4">
