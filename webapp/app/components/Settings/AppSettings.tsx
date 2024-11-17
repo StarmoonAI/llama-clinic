@@ -52,6 +52,7 @@ const AppSettings: React.FC<AppSettingsProps> = ({ selectedUser, heading }) => {
     const deleteData = async () => {
         localStorage.removeItem("familyHistory");
         localStorage.removeItem("lifestyleFactors");
+        localStorage.removeItem("medicalRecords");
     };
 
     return (

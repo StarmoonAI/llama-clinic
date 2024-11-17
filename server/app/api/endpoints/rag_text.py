@@ -8,18 +8,18 @@ from app.utils.light_rag import light_rag_instance
 router = APIRouter()
 
 
-class TextInput(BaseModel):
-    lifestyleFactor: str
+class RagTextRequest(BaseModel):
+    text: str
 
 
 light_rag_instance_ = light_rag_instance()
 
 
 @router.post("/rag_text")
-async def process_rag_text(text_input: TextInput):
+async def process_rag_text(text_input: RagTextRequest):
     try:
-        # Get the text from the request body
-        input_text = text_input.lifestyleFactor
+        # Input validation
+        input_text = text_input.text
         if not input_text.strip():
             raise HTTPException(status_code=400, detail="Empty text is not allowed")
 

@@ -108,9 +108,18 @@ export default async function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 > */}
+                <div className="fixed bottom-0 w-full flex justify-start pointer-events-none z-40">
+                    <Image
+                        src="/pad_cropped.png" // Make sure to add your image to the public folder
+                        alt="Paddington Bear"
+                        width={300}
+                        height={300}
+                        className="object-contain h-auto max-w-[300px]"
+                    />
+                </div>
                 <main className="flex-grow mx-auto w-full flex flex-col">
                     <div className="backdrop-blur-[3px] h-[4rem]- h-[80px] flex-none flex items-center sticky top-0 z-50">
-                        <nav className="mx-auto w-full max-w-screen-lg px-4 flex items-center justify-between">
+                        <nav className="mx-auto w-full max-w-screen-xl px-4 flex items-center justify-between">
                             <a href="/" className="flex flex-row gap-3">
                                 <Image
                                     src={LlamaLogo}

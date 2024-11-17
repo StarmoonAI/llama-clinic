@@ -290,7 +290,7 @@ export function GraphModal() {
                         placeholder="Search through llama clinic..."
                         value={searchQuery}
                         onChange={handleSearch}
-                        className="flex-1 h-8"
+                        className="flex-1 h-8 font-normal"
                     />
                     <Button size="sm" onClick={onSendToGP}>
                         Send to GP
