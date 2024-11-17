@@ -14,6 +14,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import { Plus } from "lucide-react";
 import {
     Select,
     SelectContent,
@@ -41,8 +42,8 @@ const formSchema = z.object({
     relation: z.string({
         required_error: "Please select a relation.",
     }),
-    condition: z.string().min(10, {
-        message: "Condition must be at least 10 characters.",
+    condition: z.string().min(5, {
+        message: "Condition must be at least 5 characters.",
     }),
 });
 
@@ -55,15 +56,15 @@ type FamilyHistoryEntry = {
 
 const submitToAPI = async (data: z.infer<typeof formSchema>) => {
     try {
-        const response = await fetch("http://localhost:8000/api/rag_text", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+        // const response = await fetch("http://localhost:8000/api/rag_text", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        // });
 
-        if (!response.ok) throw new Error("API call failed");
+        // if (!response.ok) throw new Error("API call failed");
 
         // Store in localStorage
         const historyEntry: FamilyHistoryEntry = {
@@ -139,7 +140,7 @@ export default function AddFamilyHistory() {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4 w-2/5 p-4 bg-white rounded-lg"
+                    className="h-fit space-y-4 w-2/5 p-4 bg-white rounded-lg"
                 >
                     <FormField
                         control={form.control}
@@ -186,9 +187,11 @@ export default function AddFamilyHistory() {
                     />
                     <Button
                         type="submit"
-                        className="w-full"
+                        className="w-fit"
                         disabled={isSubmitting}
+                        size="sm"
                     >
+                        <Plus size={16} />
                         {isSubmitting
                             ? "Submitting..."
                             : "Add to family history"}

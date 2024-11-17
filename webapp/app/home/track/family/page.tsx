@@ -1,4 +1,4 @@
-import { FamilyHistory } from "@/app/components/FamilyHistory";
+import AddFamilyHistory from "@/app/components/AddFamilyHistory";
 import { getOpenGraphMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-    return <FamilyHistory />;
+    return <AddFamilyHistory />;
 }

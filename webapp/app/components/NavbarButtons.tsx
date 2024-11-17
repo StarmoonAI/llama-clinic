@@ -17,7 +17,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
             <Button
                 variant="primary"
                 size="sm"
-                className="flex font-normal flex-row items-center gap-2 rounded-full"
+                className="flex font-normal flex-row items-center gap-2 rounded-full font-quicksand"
             >
                 <Home size={ICON_SIZE} />
                 <span className="hidden sm:block">Dashboard</span>
@@ -28,7 +28,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
             <Button
                 variant="secondary"
                 size="sm"
-                className="font-normal flex flex-row items-center gap-2 rounded-full bg-nav-bar"
+                className="font-normal flex flex-row items-center gap-2 rounded-full bg-nav-bar font-quicksand"
             >
                 {/* <LogIn size={ICON_SIZE} strokeWidth={STROKE_WIDTH} /> */}
                 <Gamepad2 size={22} />

@@ -11,12 +11,8 @@ export const metadata: Metadata = {
 
 const MedicalOptions = [
     {
-        display: "Current symptoms",
-        href: "/home/track",
-    },
-    {
         display: "Files",
-        href: "/home/track/files",
+        href: "/home/track",
     },
     {
         display: "Family history",

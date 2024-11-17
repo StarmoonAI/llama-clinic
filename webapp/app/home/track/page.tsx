@@ -1,16 +1,16 @@
-import CurrentSymptoms from "@/app/components/CurrentSymptoms";
+import MedicalRecords from "@/app/components/MedicalRecords";
 import { getOpenGraphMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Medical records",
-    ...getOpenGraphMetadata("Medical records"),
+    title: "File upload",
+    ...getOpenGraphMetadata("File upload"),
 };
 
 export default async function Home() {
     return (
         <div>
-            <CurrentSymptoms />
+            <MedicalRecords />
         </div>
     );
 }

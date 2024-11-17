@@ -115,7 +115,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
     return (
         <div className="w-full max-w-md mt-6">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <div className="border-2 border-dashed bg-white border-gray-300 rounded-lg p-8 text-center">
                 <input
                     type="file"
                     multiple
