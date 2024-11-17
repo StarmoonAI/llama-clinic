@@ -111,7 +111,7 @@ rag = LightRAG(
 # net.show("knowledge_graph.html")
 
 
-client = Groq(api_key="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")
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 MODEL = "llama-3.1-70b-versatile"
 
 
