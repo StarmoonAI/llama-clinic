@@ -5,9 +5,9 @@ export const defaultPersonalityId: string =
 export const discordInviteLink = "https://discord.gg/KJWxDPBRUj";
 
 export const userFormPersonaLabel =
-    "Briefly describe yourself and your interests, personality, and learning style";
+    "Briefly describe your child's personality and interests and how they learn best.";
 export const userFormPersonaPlaceholder =
-    "Don't get me started on the guitar...I love to shred it like Hendrix. I also like a good challenge. Challenge me to be better and I'll rise to the occasion.";
+    "My child is very creative and loves to draw. They learn best when they can explore and experiment.";
 export const userFormAgeLabel = "Your Age";
 export const userFormAgeDescription =
     "Users under 13 years old must have a parent or guardian to set up Llama Clinic.";
