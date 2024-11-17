@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { LogOut } from "lucide-react";
+import { LogOut, Trash } from "lucide-react";
 import AuthTokenModal from "../AuthTokenModal";
 import GeneralUserForm from "./UserForm";
 import { Slider } from "@/components/ui/slider";
@@ -46,6 +46,12 @@ const AppSettings: React.FC<AppSettingsProps> = ({ selectedUser, heading }) => {
     const updateVolume = (value: number[]) => {
         setVolume(value);
         debouncedUpdateVolume();
+    };
+
+    // clear localStorage familyHistory and lifestyleFactors
+    const deleteData = async () => {
+        localStorage.removeItem("familyHistory");
+        localStorage.removeItem("lifestyleFactors");
     };
 
     return (
@@ -108,7 +114,10 @@ const AppSettings: React.FC<AppSettingsProps> = ({ selectedUser, heading }) => {
                             </div>
                         </div>
                     )}
-                    <form action={signOutAction} className="mt-8">
+                    <form
+                        action={signOutAction}
+                        className="mt-8 flex flex-row items-center gap-4"
+                    >
                         <Button
                             variant="destructive_outline"
                             size="sm"
@@ -118,6 +127,14 @@ const AppSettings: React.FC<AppSettingsProps> = ({ selectedUser, heading }) => {
                             <span>Logout</span>
                         </Button>
                     </form>
+                    <Button
+                        variant="link"
+                        className="text-red-500 self-start px-0"
+                        size="sm"
+                        onClick={deleteData}
+                    >
+                        <span>Delete data</span>
+                    </Button>
                 </div>
             </section>
         </>
