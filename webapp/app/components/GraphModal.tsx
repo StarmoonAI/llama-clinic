@@ -63,6 +63,43 @@ export function GraphModal() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    const [selectedNode, setSelectedNode] = useState<NodeData | null>(null);
+    const [selectedNeighbors, setSelectedNeighbors] = useState<Set<string>>(
+        new Set()
+    );
+
+    // Handle node selection
+    const handleNodeSelect = (node: NodeData, data: GraphData) => {
+        if (selectedNode?.id === node.id) {
+            // Deselect if clicking the same node
+            setSelectedNode(null);
+            setSelectedNeighbors(new Set());
+        } else {
+            setSelectedNode(node);
+            // Find connected nodes
+            const neighbors = new Set<string>();
+            data.links.forEach((link) => {
+                const sourceId =
+                    typeof link.source === "string"
+                        ? link.source
+                        : link.source.id;
+                const targetId =
+                    typeof link.target === "string"
+                        ? link.target
+                        : link.target.id;
+
+                if (sourceId === node.id) neighbors.add(targetId);
+                if (targetId === node.id) neighbors.add(sourceId);
+            });
+            setSelectedNeighbors(neighbors);
+        }
+    };
+
+    const handleClearSelection = () => {
+        setSelectedNode(null);
+        setSelectedNeighbors(new Set());
+    };
+
     useEffect(() => {
         const fetchAndParseXML = async (): Promise<void> => {
             try {
@@ -204,10 +241,21 @@ export function GraphModal() {
                 <div className="w-full h-full">
                     <div className="flex flex-row w-full h-full">
                         <div className="w-3/5 h-full">
-                            <GraphViz data={graphData} />
+                            <GraphViz
+                                data={graphData}
+                                handleNodeSelect={handleNodeSelect}
+                                handleClearSelection={handleClearSelection}
+                                selectedNode={selectedNode}
+                                selectedNeighbors={selectedNeighbors}
+                            />
                         </div>
                         <div className="w-2/5 h-full">
-                            <GraphDetails graphData={graphData} />
+                            <GraphDetails
+                                graphData={graphData}
+                                selectedNode={selectedNode}
+                                selectedNeighbors={selectedNeighbors}
+                                handleClearSelection={handleClearSelection}
+                            />
                         </div>
                     </div>
                 </div>

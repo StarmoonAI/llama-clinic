@@ -98,9 +98,17 @@ const nodeDetails: Record<
 
 interface GraphDetailsProps {
     graphData: GraphData;
+    selectedNode: NodeData | null;
+    selectedNeighbors: Set<string>;
+    handleClearSelection: () => void;
 }
 
-export const GraphDetails: React.FC<GraphDetailsProps> = ({ graphData }) => {
+export const GraphDetails: React.FC<GraphDetailsProps> = ({
+    graphData,
+    selectedNode,
+    selectedNeighbors,
+    handleClearSelection,
+}) => {
     const [currentNode, setCurrentNode] = useState<string>("ADHD_TREATMENT");
     const [history, setHistory] = useState<string[]>(["ADHD_TREATMENT"]);
     const [historyIndex, setHistoryIndex] = useState(0);
@@ -174,39 +182,29 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({ graphData }) => {
                 </div>
             </div>
             <div className="container mx-auto p-4 max-w-4xl">
-                <Card
-                    className={`${nodeDetails[currentNodeData.type].color} border-2 mb-6`}
-                >
-                    <CardHeader>
-                        <CardTitle>
-                            {nodeDetails[currentNodeData.type].icon}{" "}
-                            {currentNodeData.title}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-sm text-muted-foreground mb-4">
-                            {currentNodeData.description}
-                        </p>
-                        <div className="bg-white bg-opacity-50 rounded-lg p-4">
-                            <h3 className="text-sm font-semibold mb-2 flex items-center">
-                                <ChevronDown className="mr-2 h-4 w-4" />
-                                Related Factors
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
-                                {currentNodeData.connections.map(
-                                    (connectionId) =>
-                                        renderNode(mockGraph[connectionId])
-                                )}
-                            </div>
+                {selectedNode && (
+                    <div className="bg-white p-4 rounded-lg shadow-lg border max-w-xs">
+                        <div className="font-bold text-lg">
+                            {selectedNode.id}
                         </div>
-                    </CardContent>
-                </Card>
+                        <div className="text-sm text-gray-600">
+                            {selectedNode.type}
+                        </div>
+                        <div className="mt-2 text-sm">
+                            {selectedNode.description}
+                        </div>
+                        <div className="mt-2 text-xs text-gray-500">
+                            Connected to {selectedNeighbors.size} node(s)
+                        </div>
+                        <button
+                            onClick={handleClearSelection}
+                            className="mt-3 text-sm text-blue-600 hover:text-blue-800"
+                        >
+                            Clear Selection
+                        </button>
+                    </div>
+                )}
             </div>
-            {/* <SheetFooter>
-                    <SheetClose asChild>
-                        <Button type="submit">Save changes</Button>
-                    </SheetClose>
-                </SheetFooter> */}
         </div>
     );
 };

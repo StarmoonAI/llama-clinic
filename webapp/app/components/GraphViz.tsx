@@ -1,47 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
-interface d3NodeData extends d3.SimulationNodeDatum {
-    id: string;
-    type: string;
-    description: string;
-    sourceId: string;
+interface GraphVizProps {
+    data: GraphData;
+    handleNodeSelect: (node: NodeData, data: GraphData) => void;
+    selectedNode: NodeData | null;
+    selectedNeighbors: Set<string>;
+    handleClearSelection: () => void;
 }
 
-interface d3EdgeData extends d3.SimulationLinkDatum<d3NodeData> {
-    source: string | d3NodeData;
-    target: string | d3NodeData;
-    weight: number;
-    description: string;
-    keywords: string[];
-}
-
-interface GraphData {
-    nodes: d3NodeData[];
-    links: d3EdgeData[];
-}
-
-const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
+const MedicalGraph: React.FC<GraphVizProps> = ({
+    data,
+    handleNodeSelect,
+    selectedNode,
+    selectedNeighbors,
+    handleClearSelection,
+}) => {
     const svgRef = useRef<SVGSVGElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
 
-    console.log(data);
+    // Get unique node types
+    const uniqueTypes = [...new Set(data.nodes.map((node) => node.type))];
+
+    // Generate colors for the unique types
+    const colors = d3.schemeSet3.slice(0, uniqueTypes.length);
+
+    // Create dynamic color scale
+    const colorScale = d3.scaleOrdinal().domain(uniqueTypes).range(colors);
+
     useEffect(() => {
         if (!svgRef.current || !data.nodes.length) return;
 
         const svg = d3.select(svgRef.current);
-        svg.selectAll("*").remove(); // Clear previous render
-
-        // Color scale for different node types
-        const colorScale = d3
-            .scaleOrdinal()
-            .domain(["SYMPTOM", "DISEASE", "TREATMENT", "MEDICATION"])
-            .range(["#ff9999", "#99ff99", "#9999ff", "#ffff99"]);
+        svg.selectAll("*").remove();
 
         // Create force simulation
         const simulation = d3
-            .forceSimulation(data.nodes as d3NodeData[])
+            .forceSimulation(data.nodes as d3.SimulationNodeDatum[])
             .force(
                 "link",
                 d3
@@ -79,7 +75,7 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             .attr("stroke-opacity", 0.6)
             .attr("stroke-width", (d) => Math.sqrt(d.weight));
 
-        // Create nodes
+        // Create nodes group
         const nodes = g
             .append("g")
             .selectAll("g")
@@ -87,7 +83,7 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             .join("g")
             .call(
                 d3
-                    .drag<SVGGElement, d3NodeData>()
+                    .drag<SVGGElement, NodeData>()
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended) as any
@@ -99,7 +95,9 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             .attr("r", 20)
             .attr("fill", (d) => colorScale(d.type) as string)
             .attr("stroke", "#fff")
-            .attr("stroke-width", 2);
+            .attr("stroke-width", 2)
+            .attr("class", "cursor-pointer transition-all duration-200")
+            .on("click", (event, d) => handleNodeSelect(d, data));
 
         // Add labels to nodes
         nodes
@@ -107,7 +105,54 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             .text((d) => d.id)
             .attr("text-anchor", "middle")
             .attr("dy", 30)
-            .attr("class", "text-sm fill-gray-700");
+            .attr("class", "text-sm fill-gray-700 pointer-events-none");
+
+        // Update visual states based on selection
+        const updateSelection = () => {
+            nodes
+                .selectAll("circle")
+                .attr("stroke", (d: any) => {
+                    if (selectedNode?.id === d.id) return "#000";
+                    if (selectedNeighbors.has(d.id)) return "#666";
+                    return "#fff";
+                })
+                .attr("stroke-width", (d: any) => {
+                    if (selectedNode?.id === d.id) return 4;
+                    if (selectedNeighbors.has(d.id)) return 3;
+                    return 2;
+                })
+                .attr("opacity", (d: any) => {
+                    if (!selectedNode) return 1;
+                    return selectedNode.id === d.id ||
+                        selectedNeighbors.has(d.id)
+                        ? 1
+                        : 0.3;
+                });
+
+            links
+                .attr("opacity", (d) => {
+                    if (!selectedNode) return 0.6;
+                    const sourceId =
+                        typeof d.source === "string" ? d.source : d.source.id;
+                    const targetId =
+                        typeof d.target === "string" ? d.target : d.target.id;
+                    return sourceId === selectedNode.id ||
+                        targetId === selectedNode.id
+                        ? 1
+                        : 0.1;
+                })
+                .attr("stroke-width", (d) => {
+                    if (!selectedNode) return Math.sqrt(d.weight);
+                    const sourceId =
+                        typeof d.source === "string" ? d.source : d.source.id;
+                    const targetId =
+                        typeof d.target === "string" ? d.target : d.target.id;
+                    return sourceId === selectedNode.id ||
+                        targetId === selectedNode.id
+                        ? Math.sqrt(d.weight) * 2
+                        : Math.sqrt(d.weight);
+                });
+        };
 
         // Create tooltip
         const tooltip = d3
@@ -126,32 +171,7 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             <div class="font-bold">${d.id}</div>
             <div class="text-gray-600">${d.type}</div>
             <div class="mt-2">${d.description}</div>
-          `
-                    )
-                    .style("left", event.pageX + 10 + "px")
-                    .style("top", event.pageY - 10 + "px")
-                    .classed("hidden", false);
-            })
-            .on("mouseout", () => {
-                tooltip.classed("hidden", true);
-            });
-
-        // Add hover interactions for links
-        links
-            .on("mouseover", (event, d) => {
-                tooltip
-                    .html(
-                        `
-            <div class="font-bold">Relationship</div>
-            <div>${d.description}</div>
-            <div class="mt-2">
-              <span class="font-semibold">Keywords:</span> 
-              ${d.keywords.join(", ")}
-            </div>
-            <div class="mt-1">
-              <span class="font-semibold">Weight:</span> 
-              ${d.weight}
-            </div>
+            ${selectedNode ? '<div class="mt-2 text-xs">(Click to select/deselect)</div>' : ""}
           `
                     )
                     .style("left", event.pageX + 10 + "px")
@@ -165,10 +185,10 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
         // Update positions on simulation tick
         simulation.on("tick", () => {
             links
-                .attr("x1", (d) => (d.source as any).x!)
-                .attr("y1", (d) => (d.source as any).y!)
-                .attr("x2", (d) => (d.target as any).x!)
-                .attr("y2", (d) => (d.target as any).y!);
+                .attr("x1", (d) => (d.source as NodeData).x!)
+                .attr("y1", (d) => (d.source as NodeData).y!)
+                .attr("x2", (d) => (d.target as NodeData).x!)
+                .attr("y2", (d) => (d.target as NodeData).y!);
 
             nodes.attr("transform", (d) => `translate(${d.x},${d.y})`);
         });
@@ -191,11 +211,14 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
             event.subject.fy = null;
         }
 
-        // Cleanup
+        // Initial selection state
+        updateSelection();
+
+        // Update selection when it changes
         return () => {
             simulation.stop();
         };
-    }, [data, dimensions]);
+    }, [data, dimensions, selectedNode, selectedNeighbors, colorScale]);
 
     // Update dimensions on window resize
     useEffect(() => {
@@ -219,39 +242,23 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
 
     return (
         <div className="w-full h-full relative">
-            {/* Legend */}
-            <div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg border">
+            {/* Dynamic Legend */}
+            <div className="absolute top-4 left-4 bg-white p-4 rounded-lg shadow-lg border">
                 <div className="text-sm font-bold mb-2">Node Types</div>
-                {["SYMPTOM", "DISEASE", "TREATMENT", "MEDICATION"].map(
-                    (type) => (
+                {uniqueTypes.map((type) => (
+                    <div key={type} className="flex items-center gap-2 text-sm">
                         <div
-                            key={type}
-                            className="flex items-center gap-2 text-sm"
-                        >
-                            <div
-                                className="w-4 h-4 rounded-full"
-                                style={{
-                                    backgroundColor: d3
-                                        .scaleOrdinal<string>()
-                                        .domain([
-                                            "SYMPTOM",
-                                            "DISEASE",
-                                            "TREATMENT",
-                                            "MEDICATION",
-                                        ])
-                                        .range([
-                                            "#ff9999",
-                                            "#99ff99",
-                                            "#9999ff",
-                                            "#ffff99",
-                                        ])(type),
-                                }}
-                            />
-                            {type}
-                        </div>
-                    )
-                )}
+                            className="w-4 h-4 rounded-full"
+                            style={{
+                                backgroundColor: colorScale(type) as string,
+                            }}
+                        />
+                        {type}
+                    </div>
+                ))}
             </div>
+
+            {/* Selected Node Info */}
 
             <svg
                 ref={svgRef}
@@ -264,4 +271,4 @@ const GraphViz: React.FC<{ data: GraphData }> = ({ data }) => {
     );
 };
 
-export default GraphViz;
+export default MedicalGraph;

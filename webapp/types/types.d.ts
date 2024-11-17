@@ -13,11 +13,13 @@ declare global {
         type: string;
         description: string;
         sourceId: string;
+        x?: number;
+        y?: number;
     }
 
     interface EdgeData {
-        source: string;
-        target: string;
+        source: string | NodeData;
+        target: string | NodeData;
         weight: number;
         description: string;
         keywords: string[];
