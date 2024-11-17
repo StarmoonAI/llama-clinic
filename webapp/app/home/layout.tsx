@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const sidebarNavItems = [
     {
-        title: "Playground",
+        title: "Playverse",
         href: "/home",
         icon: <MicVocal size={ICON_SIZE} />,
     },

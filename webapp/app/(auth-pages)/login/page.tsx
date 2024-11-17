@@ -85,7 +85,7 @@ export default async function Login({ searchParams }: LoginProps) {
             <Card className="sm:border-2 border-0 sm:bg-white bg-transparent shadow-none">
                 <CardHeader>
                     <CardTitle className="flex flex-row gap-1 items-center">
-                        Playground
+                        Playverse
                         <Sparkles size={20} fill="black" />
                     </CardTitle>
                     <CardDescription>

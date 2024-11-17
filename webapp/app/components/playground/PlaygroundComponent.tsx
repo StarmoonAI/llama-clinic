@@ -148,7 +148,7 @@ const Playground: React.FC<PlaygroundProps> = ({ selectedUser }) => {
         <div className="flex flex-col font-quicksand">
             <div className="flex flex-col w-full gap-2">
                 <div className="flex flex-row sm:items-center gap-4 justify-between sm:justify-normal items-start">
-                    <h1 className="text-3xl font-extrabold">Playground</h1>
+                    <h1 className="text-3xl font-extrabold">Playverse</h1>
                 </div>
 
                 {messageHistory.length === 0 ? (

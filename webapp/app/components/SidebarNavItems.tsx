@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { Dot } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Dot, Heart } from "lucide-react";
+import { GraphModal } from "./GraphModal";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
     items: {
@@ -21,11 +22,12 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
     return (
         <nav
             className={cn(
-                "flex space-x-2 justify-between px-4 sm:justify-evenly md:justify-start md:flex-col md:space-x-0 md:space-y-6 rounded-xl",
+                "flex space-x-2 font-quicksand justify-between px-4 sm:justify-evenly md:justify-start md:flex-col md:space-x-0 md:space-y-6 rounded-xl",
                 className
             )}
             {...props}
         >
+            <GraphModal />
             {items.map((item) => {
                 return (
                     <Link
