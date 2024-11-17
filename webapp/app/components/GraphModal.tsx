@@ -17,7 +17,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { GraphDetails } from "./GraphDetails";
 import GraphViz from "./GraphViz";
-
+import { useToast } from "@/components/ui/use-toast";
 interface XMLNodeData {
     "@_id": string;
     "@_key"?: string;
@@ -56,6 +56,7 @@ interface ParsedXML {
 }
 
 export function GraphModal() {
+    const { toast } = useToast();
     const [graphData, setGraphData] = useState<GraphData>({
         nodes: [],
         links: [],
@@ -98,6 +99,13 @@ export function GraphModal() {
     const handleClearSelection = () => {
         setSelectedNode(null);
         setSelectedNeighbors(new Set());
+    };
+
+    const onSendToGP = () => {
+        toast({
+            title: "Sent to GP",
+            description: "Your health data has been sent to your GP.",
+        });
     };
 
     useEffect(() => {
@@ -234,11 +242,14 @@ export function GraphModal() {
                     <span>Health explorer</span>
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-[90vw] h-[90vh]">
-                <DialogTitle className="text-2xl font-bold">
-                    Health explorer
+            <DialogContent className="max-w-[90vw] h-[90vh]  flex flex-col">
+                <DialogTitle className="text-2xl font-bold shrink-0 flex flex-row items-center justify-between mr-10">
+                    <span>Health explorer</span>
+                    <Button size="sm" onClick={onSendToGP}>
+                        Send to GP
+                    </Button>
                 </DialogTitle>
-                <div className="w-full h-full">
+                <div className="flex-1 min-h-0">
                     <div className="flex flex-row w-full h-full">
                         <div className="w-3/5 h-full">
                             <GraphViz

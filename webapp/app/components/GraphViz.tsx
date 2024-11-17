@@ -14,7 +14,6 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
     handleNodeSelect,
     selectedNode,
     selectedNeighbors,
-    handleClearSelection,
 }) => {
     const svgRef = useRef<SVGSVGElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
@@ -23,9 +22,25 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
     // Get unique node types
     const uniqueTypes = [...new Set(data.nodes.map((node) => node.type))];
 
-    // Generate colors for the unique types
-    const colors = d3.schemeSet3.slice(0, uniqueTypes.length);
+    // Generate vibrant colors for the unique types
+    const baseColors = [
+        "#FF6B6B", // vibrant red
+        "#4ECDC4", // turquoise
+        "#45B7D1", // bright blue
+        "#96CEB4", // sage green
+        "#FFBE0B", // golden yellow
+        "#FF006E", // hot pink
+        "#8338EC", // bright purple
+        "#3A86FF", // royal blue
+        "#FB5607", // orange
+        "#38B000", // lime green
+    ];
 
+    // Ensure we have enough colors by repeating the array if necessary
+    const colors = Array.from(
+        { length: uniqueTypes.length },
+        (_, i) => baseColors[i % baseColors.length]
+    );
     // Create dynamic color scale
     const colorScale = d3.scaleOrdinal().domain(uniqueTypes).range(colors);
 
@@ -159,7 +174,7 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
             .select(tooltipRef.current)
             .attr(
                 "class",
-                "absolute hidden bg-white p-4 rounded-lg shadow-lg border text-sm max-w-xs"
+                "absolute hidden bg-white p-4 rounded-lg shadow-lg border text-sm min-w-[250px] max-w-md"
             );
 
         // Add hover interactions
@@ -169,8 +184,8 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
                     .html(
                         `
             <div class="font-bold">${d.id}</div>
-            <div class="text-gray-600">${d.type}</div>
-            <div class="mt-2">${d.description}</div>
+            <div class="text-gray-600 text-sm">${d.type}</div>
+            <div class="mt-2 text-xs">${d.description}</div>
             ${selectedNode ? '<div class="mt-2 text-xs">(Click to select/deselect)</div>' : ""}
           `
                     )
@@ -241,7 +256,7 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
     }, []);
 
     return (
-        <div className="w-full h-full relative">
+        <div className="w-full h-[100%] relative">
             {/* Dynamic Legend */}
             <div className="absolute top-4 left-4 bg-white p-4 rounded-lg shadow-lg border">
                 <div className="text-sm font-bold mb-2">Node Types</div>

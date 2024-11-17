@@ -113,6 +113,8 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
     const [history, setHistory] = useState<string[]>(["ADHD_TREATMENT"]);
     const [historyIndex, setHistoryIndex] = useState(0);
 
+    console.log(selectedNeighbors);
+
     const handleNodeClick = (nodeId: string) => {
         setCurrentNode(nodeId);
         setHistory((prev) => [...prev.slice(0, historyIndex + 1), nodeId]);
@@ -181,9 +183,9 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
                     </Button>
                 </div>
             </div>
-            <div className="container mx-auto p-4 max-w-4xl">
+            <div className="container mx-auto p-4">
                 {selectedNode && (
-                    <div className="bg-white p-4 rounded-lg shadow-lg border max-w-xs">
+                    <div className="bg-white p-4 rounded-lg shadow-lg border w-full">
                         <div className="font-bold text-lg">
                             {selectedNode.id}
                         </div>
