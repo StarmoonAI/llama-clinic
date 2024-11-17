@@ -13,6 +13,7 @@ from app.api.endpoints import (
     create_friendly_slug,
     hardware_auth,
     rag,
+    rag_text,
 )
 from app.core.config import settings
 from dotenv import load_dotenv
@@ -52,6 +53,7 @@ app.include_router(generate_token.router, prefix="/api", tags=["Token"])
 app.include_router(create_friendly_slug.router, prefix="/api", tags=["Token"])
 app.include_router(hardware_auth.router, prefix="/api", tags=["Token"])
 app.include_router(rag.router, prefix="/api", tags=["RAG"])
+app.include_router(rag_text.router, prefix="/api", tags=["RAG"])
 app.include_router(starmoon.router, tags=["StarMoon WebSocket"])
 
 
