@@ -9,7 +9,12 @@ import nltk
 # import pyaudio
 from app.services.clients import Clients
 from app.services.stt import get_deepgram_transcript
-from app.services.tts import azure_tts, check_task_result, create_emotion_detection_task
+from app.services.tts import (
+    azure_tts,
+    check_task_result,
+    create_emotion_detection_task,
+    fish_tts,
+)
 from app.utils.transcription_collector import TranscriptCollector
 from fastapi import WebSocket, WebSocketDisconnect
 from app.utils.light_rag import light_rag_instance
@@ -28,14 +33,14 @@ def chunk_text_by_clause(text):
     return nltk.sent_tokenize(text)
 
 
-light_rag_instance = light_rag_instance()
+light_rag_instance_ = light_rag_instance()
 
 
 def medical_information_tool(query):
     """
     A tool that retrieves medical information and patient's health records from the database.
     """
-    return light_rag_instance.query(query, param=QueryParam(mode="hybrid"))
+    return light_rag_instance_.query(query, param=QueryParam(mode="hybrid"))
 
 
 tools = [
@@ -266,7 +271,7 @@ class ConversationManager:
                             "assistant",
                             session_id,
                         )
-                        azure_tts(
+                        fish_tts(
                             sentence,
                             boundary,
                             task_id,
@@ -303,7 +308,7 @@ class ConversationManager:
                 "assistant",
                 session_id,
             )
-            azure_tts(
+            fish_tts(
                 accumulated_text_,
                 "end",
                 task_id,

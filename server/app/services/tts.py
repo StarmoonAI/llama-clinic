@@ -16,6 +16,7 @@ from azure.cognitiveservices.speech import SpeechConfig
 from celery.result import AsyncResult
 from dotenv import load_dotenv
 from fastapi import WebSocket
+from fish_audio_sdk import Session, TTSRequest, ReferenceAudio
 
 load_dotenv()
 
@@ -253,6 +254,63 @@ def azure_tts(
             audio_data = result.audio_data[100:]
         else:
             audio_data = result.audio_data
+        for i in range(0, len(audio_data), chunk_size):
+            chunk = audio_data[i : i + chunk_size]
+            # print("Audio chunk+++++++++", i)
+            bytes_queue.put_nowait(
+                {"type": "bytes", "device": device, "data": chunk, "id": i}
+            )
+
+
+session = Session("af9be9fe8dfa49dc8a2bbb0c4f5b11c1")
+
+toyid2speechname_fish = {
+    "6c3eb71a-8d68-4fc6-85c5-27d283ecabc8": "f187db9986f545b986af014579c7fae4",
+    "14d91296-eb6b-41d7-964c-856a8614d80e": "f187db9986f545b986af014579c7fae4",
+    "56224f7f-250d-4351-84ee-e4a13b881c7b": "f187db9986f545b986af014579c7fae4",
+}
+
+
+def fish_tts(
+    sentence: str,
+    boundary: str,
+    task_id: str,
+    toy_id: str,
+    device: str,
+    bytes_queue: asyncio.Queue,
+):
+    chunks = []
+    for chunk in session.tts(
+        TTSRequest(
+            reference_id=toyid2speechname_fish[toy_id],
+            text=sentence,
+        )
+    ):
+        chunks.append(chunk)
+
+    if device == "web":
+        audio_data_base64 = base64.b64encode(b"".join(chunks)).decode("utf-8")
+        bytes_queue.put_nowait(
+            {
+                "type": "json",
+                "device": device,
+                "data": {
+                    "type": "response",
+                    "audio_data": audio_data_base64,
+                    "text_data": sentence,
+                    "boundary": boundary,
+                    "task_id": task_id,
+                },
+            }
+        )
+
+    else:
+        chunk_size = 1024  # Adjust this value based on your needs
+        max_len = len(chunks)
+        if max_len > 100:
+            audio_data = chunks[100:]
+        else:
+            audio_data = chunks
         for i in range(0, len(audio_data), chunk_size):
             chunk = audio_data[i : i + chunk_size]
             # print("Audio chunk+++++++++", i)
