@@ -35,7 +35,7 @@ async def llm_model_func(
 async def embedding_func(texts: list[str]) -> np.ndarray:
     headers = {
         "Content-Type": "application/json",
-        "api-key": "FToHqHlJs5B9zhdlJ8uymoi6C6g2I3GVrJGuC99oCephOkqmHwvNJQQJ99AKACHYHv6XJ3w3AAABACOGq6m0",
+        "api-key": os.getenv("REALTIME_API_KEY"),
     }
     endpoint = "https://starmoonai.openai.azure.com/openai/deployments/text-embedding-3-large/embeddings?api-version=2023-05-15"
 

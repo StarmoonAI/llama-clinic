@@ -57,7 +57,7 @@ class Settings(BaseSettings):
         default_factory=lambda: os.getenv("AZURE_OPENAI_API_KEY", "")
     )
     GROQ_API_KEY: str = Field(default_factory=lambda: os.getenv("GROQ_API_KEY", ""))
-
+    REALTIME_API_KEY: str = Field(default_factory=lambda: os.getenv("REALTIME_API_KEY", ""))
     # STT
     DEEPGRAM_API_KEY: str = Field(default_factory=lambda: os.getenv("DG_API_KEY", ""))
 
