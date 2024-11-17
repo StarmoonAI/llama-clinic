@@ -18,6 +18,7 @@ import { useState } from "react";
 import { GraphDetails } from "./GraphDetails";
 import GraphViz from "./GraphViz";
 import { useToast } from "@/components/ui/use-toast";
+import d3 from "d3";
 interface XMLNodeData {
     "@_id": string;
     "@_key"?: string;
@@ -230,6 +231,11 @@ export function GraphModal() {
         fetchAndParseXML();
     }, []);
 
+    // Get unique node types
+    const uniqueTypes = [
+        ...new Set(graphData.nodes.map((node: NodeData) => node.type)),
+    ];
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -258,6 +264,7 @@ export function GraphModal() {
                                 handleClearSelection={handleClearSelection}
                                 selectedNode={selectedNode}
                                 selectedNeighbors={selectedNeighbors}
+                                uniqueTypes={uniqueTypes}
                             />
                         </div>
                         <div className="w-2/5 h-full">
@@ -266,6 +273,8 @@ export function GraphModal() {
                                 selectedNode={selectedNode}
                                 selectedNeighbors={selectedNeighbors}
                                 handleClearSelection={handleClearSelection}
+                                uniqueTypes={uniqueTypes}
+                                onNodeSelect={handleNodeSelect}
                             />
                         </div>
                     </div>

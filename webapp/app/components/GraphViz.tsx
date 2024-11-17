@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import { baseColors } from "@/lib/data";
 
 interface GraphVizProps {
     data: GraphData;
@@ -7,6 +8,7 @@ interface GraphVizProps {
     selectedNode: NodeData | null;
     selectedNeighbors: Set<string>;
     handleClearSelection: () => void;
+    uniqueTypes: string[];
 }
 
 const MedicalGraph: React.FC<GraphVizProps> = ({
@@ -14,27 +16,11 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
     handleNodeSelect,
     selectedNode,
     selectedNeighbors,
+    uniqueTypes,
 }) => {
     const svgRef = useRef<SVGSVGElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-
-    // Get unique node types
-    const uniqueTypes = [...new Set(data.nodes.map((node) => node.type))];
-
-    // Generate vibrant colors for the unique types
-    const baseColors = [
-        "#FF6B6B", // vibrant red
-        "#4ECDC4", // turquoise
-        "#45B7D1", // bright blue
-        "#96CEB4", // sage green
-        "#FFBE0B", // golden yellow
-        "#FF006E", // hot pink
-        "#8338EC", // bright purple
-        "#3A86FF", // royal blue
-        "#FB5607", // orange
-        "#38B000", // lime green
-    ];
 
     // Ensure we have enough colors by repeating the array if necessary
     const colors = Array.from(
@@ -42,7 +28,10 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
         (_, i) => baseColors[i % baseColors.length]
     );
     // Create dynamic color scale
-    const colorScale = d3.scaleOrdinal().domain(uniqueTypes).range(colors);
+    const colorScale = d3
+        .scaleOrdinal<string>()
+        .domain(uniqueTypes)
+        .range(colors);
 
     useEffect(() => {
         if (!svgRef.current || !data.nodes.length) return;
@@ -50,7 +39,6 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
 
-        // Create force simulation
         const simulation = d3
             .forceSimulation(data.nodes as d3.SimulationNodeDatum[])
             .force(
@@ -58,14 +46,22 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
                 d3
                     .forceLink(data.links)
                     .id((d: any) => d.id)
-                    .distance(100)
+                    .distance(70) // Increased to keep connected nodes readable
             )
-            .force("charge", d3.forceManyBody().strength(-200))
+            .force(
+                "charge",
+                d3
+                    .forceManyBody()
+                    .strength(-150) // Moderate repulsion between nodes
+                    .distanceMax(300) // Limit the repulsion range
+            )
             .force(
                 "center",
-                d3.forceCenter(dimensions.width / 2, dimensions.height / 2)
+                d3
+                    .forceCenter(dimensions.width / 2, dimensions.height / 2)
+                    .strength(0.15) // Add center gravity to pull disconnected components together
             )
-            .force("collision", d3.forceCollide().radius(50));
+            .force("collision", d3.forceCollide().radius(35)); // Ensure no text overlap
 
         // Create container group with zoom
         const g = svg.append("g");
@@ -186,7 +182,6 @@ const MedicalGraph: React.FC<GraphVizProps> = ({
             <div class="font-bold">${d.id}</div>
             <div class="text-gray-600 text-sm">${d.type}</div>
             <div class="mt-2 text-xs">${d.description}</div>
-            ${selectedNode ? '<div class="mt-2 text-xs">(Click to select/deselect)</div>' : ""}
           `
                     )
                     .style("left", event.pageX + 10 + "px")

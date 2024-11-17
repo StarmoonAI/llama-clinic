@@ -18,3 +18,17 @@ export const SECONDS_PER_CREDIT = (30 * 60) / INITIAL_CREDITS; // 30 minutes equ
 
 export const DEVICE_COST = 57.99;
 export const ORIGINAL_COST = 99.99;
+
+// Generate vibrant colors for the unique types
+export const baseColors = [
+    "#FF6B6B", // vibrant red
+    "#4ECDC4", // turquoise
+    "#45B7D1", // bright blue
+    "#96CEB4", // sage green
+    "#FFBE0B", // golden yellow
+    "#FF006E", // hot pink
+    "#8338EC", // bright purple
+    "#3A86FF", // royal blue
+    "#FB5607", // orange
+    "#38B000", // lime green
+];

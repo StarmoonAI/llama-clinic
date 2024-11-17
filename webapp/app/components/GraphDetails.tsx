@@ -2,105 +2,16 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
-
-type NodeType =
-    | "POTENTIAL_TREATMENT"
-    | "CURRENT_SYMPTOM"
-    | "FAMILY_HISTORY"
-    | "LIFESTYLE_FACTOR";
-
-interface Node {
-    id: string;
-    type: NodeType;
-    title: string;
-    description: string;
-    connections: string[];
-}
-
-const mockGraph: Record<string, Node> = {
-    ADHD_TREATMENT: {
-        id: "ADHD_TREATMENT",
-        type: "POTENTIAL_TREATMENT",
-        title: "ADHD Treatment Options",
-        description:
-            "Potential treatments for Attention Deficit Hyperactivity Disorder",
-        connections: [
-            "INATTENTION",
-            "HYPERACTIVITY",
-            "FAMILY_HISTORY_ADHD",
-            "SLEEP_HABITS",
-        ],
-    },
-    INATTENTION: {
-        id: "INATTENTION",
-        type: "CURRENT_SYMPTOM",
-        title: "Inattention",
-        description: "Difficulty focusing on tasks or activities",
-        connections: ["ADHD_TREATMENT"],
-    },
-    HYPERACTIVITY: {
-        id: "HYPERACTIVITY",
-        type: "CURRENT_SYMPTOM",
-        title: "Hyperactivity",
-        description: "Excessive movement and restlessness",
-        connections: ["ADHD_TREATMENT"],
-    },
-    FAMILY_HISTORY_ADHD: {
-        id: "FAMILY_HISTORY_ADHD",
-        type: "FAMILY_HISTORY",
-        title: "Family History of ADHD",
-        description: "Presence of ADHD in immediate family members",
-        connections: ["ADHD_TREATMENT"],
-    },
-    SLEEP_HABITS: {
-        id: "SLEEP_HABITS",
-        type: "LIFESTYLE_FACTOR",
-        title: "Sleep Habits",
-        description: "Quality and duration of sleep",
-        connections: ["ADHD_TREATMENT"],
-    },
-};
-
-const nodeDetails: Record<
-    NodeType,
-    {
-        color: string;
-        icon: React.ReactNode;
-        title: string;
-        neighborTitle: string;
-    }
-> = {
-    POTENTIAL_TREATMENT: {
-        color: "border-blue-200 hover:border-blue-300",
-        icon: <span className="text-blue-500">💊</span>,
-        title: "Potential Treatment",
-        neighborTitle: "Related treatments",
-    },
-    CURRENT_SYMPTOM: {
-        color: "border-red-200 hover:border-red-300",
-        icon: <span className="text-red-500">🔔</span>,
-        title: "Current Symptom",
-        neighborTitle: "Related symptoms",
-    },
-    FAMILY_HISTORY: {
-        color: "border-green-200 hover:border-green-300",
-        icon: <span className="text-green-500">👪</span>,
-        title: "Family History",
-        neighborTitle: "Related family history",
-    },
-    LIFESTYLE_FACTOR: {
-        color: "border-yellow-200 hover:border-yellow-300",
-        icon: <span className="text-yellow-500">🌿</span>,
-        title: "Lifestyle Factor",
-        neighborTitle: "Related lifestyle factors",
-    },
-};
+import { baseColors } from "@/lib/data";
+import d3 from "d3";
 
 interface GraphDetailsProps {
     graphData: GraphData;
     selectedNode: NodeData | null;
     selectedNeighbors: Set<string>;
     handleClearSelection: () => void;
+    uniqueTypes: string[];
+    onNodeSelect: (node: NodeData, data: GraphData) => void; // Add this new prop
 }
 
 export const GraphDetails: React.FC<GraphDetailsProps> = ({
@@ -108,55 +19,51 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
     selectedNode,
     selectedNeighbors,
     handleClearSelection,
+    uniqueTypes,
+    onNodeSelect,
 }) => {
-    const [currentNode, setCurrentNode] = useState<string>("ADHD_TREATMENT");
-    const [history, setHistory] = useState<string[]>(["ADHD_TREATMENT"]);
-    const [historyIndex, setHistoryIndex] = useState(0);
-
-    console.log(selectedNeighbors);
+    const [history, setHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1); // Start at -1 since no history initially
 
     const handleNodeClick = (nodeId: string) => {
-        setCurrentNode(nodeId);
-        setHistory((prev) => [...prev.slice(0, historyIndex + 1), nodeId]);
-        setHistoryIndex((prev) => prev + 1);
+        // Remove any forward history when making a new selection
+        const newHistory = [...history.slice(0, historyIndex + 1), nodeId];
+        setHistory(newHistory);
+        setHistoryIndex(newHistory.length - 1);
     };
 
     const handleBack = () => {
         if (historyIndex > 0) {
-            setHistoryIndex((prev) => prev - 1);
-            setCurrentNode(history[historyIndex - 1]);
+            setHistoryIndex(historyIndex - 1);
+            const nodeId = history[historyIndex - 1];
+            const node = graphData.nodes.find((n) => n.id === nodeId);
+            if (node) {
+                onNodeSelect(node, graphData);
+            }
         }
     };
 
     const handleForward = () => {
         if (historyIndex < history.length - 1) {
-            setHistoryIndex((prev) => prev + 1);
-            setCurrentNode(history[historyIndex + 1]);
+            setHistoryIndex(historyIndex + 1);
+            const nodeId = history[historyIndex + 1];
+            const node = graphData.nodes.find((n) => n.id === nodeId);
+            if (node) {
+                onNodeSelect(node, graphData);
+            }
         }
     };
 
-    const renderNode = (node: Node) => {
-        return (
-            <Card
-                key={node.id}
-                className={`${nodeDetails[node.type].color} border-2 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105 mb-4`}
-                onClick={() => handleNodeClick(node.id)}
-            >
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                        {nodeDetails[node.type].icon} {node.title}
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-xs text-muted-foreground">
-                        {node.description}
-                    </p>
-                </CardContent>
-            </Card>
-        );
+    // Ensure we have enough colors by repeating the array if necessary
+    const colors = Array.from(
+        { length: uniqueTypes.length },
+        (_, i) => baseColors[i % baseColors.length]
+    );
+    // Create dynamic color scale
+    const getColor = (type: string): string => {
+        const index = uniqueTypes.indexOf(type);
+        return colors[index] || colors[0]; // fallback to first color if type not found
     };
-
-    const currentNodeData = mockGraph[currentNode];
 
     return (
         <div
@@ -168,7 +75,7 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
                     <Button
                         variant="ghost"
                         onClick={handleBack}
-                        disabled={historyIndex === 0}
+                        disabled={historyIndex <= 0}
                         size="icon"
                     >
                         <ChevronLeft className="h-4 w-4" />
@@ -186,17 +93,37 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
             <div className="container mx-auto p-4">
                 {selectedNode && (
                     <div className="bg-white p-4 rounded-lg shadow-lg border w-full">
-                        <div className="font-bold text-lg">
-                            {selectedNode.id}
+                        <div className="flex items-center gap-3 mb-2">
+                            {/* Node Name */}
+                            <h2 className="font-semibold text-xl">
+                                {selectedNode.id}
+                            </h2>
+
+                            {/* Node Type Badge */}
+                            <div className="inline-flex items-center px-2 py-1 rounded-full bg-gray-100">
+                                <div
+                                    className="w-2 h-2 rounded-full mr-2"
+                                    style={{
+                                        backgroundColor: getColor(
+                                            selectedNode.type
+                                        ),
+                                    }}
+                                />
+                                <span className="text-sm text-gray-600">
+                                    {selectedNode.type}
+                                </span>
+                            </div>
                         </div>
-                        <div className="text-sm text-gray-600">
-                            {selectedNode.type}
-                        </div>
-                        <div className="mt-2 text-sm">
+
+                        {/* Description */}
+                        <p className="text-sm text-gray-600 leading-relaxed mb-2">
                             {selectedNode.description}
-                        </div>
-                        <div className="mt-2 text-xs text-gray-500">
-                            Connected to {selectedNeighbors.size} node(s)
+                        </p>
+
+                        {/* Connection Count */}
+                        <div className="text-sm text-gray-500">
+                            Connected to {selectedNeighbors.size}{" "}
+                            {selectedNeighbors.size === 1 ? "node" : "nodes"}
                         </div>
                         <button
                             onClick={handleClearSelection}
@@ -204,6 +131,71 @@ export const GraphDetails: React.FC<GraphDetailsProps> = ({
                         >
                             Clear Selection
                         </button>
+
+                        {/* Add neighbor nodes section */}
+                        <div className="mt-8">
+                            <div className="font-medium mb-2">
+                                Connected Nodes:
+                            </div>
+                            <div className="space-y-4 overflow-y-auto max-h-[400px]">
+                                {Array.from(selectedNeighbors).map(
+                                    (neighborId) => {
+                                        const neighbor = graphData.nodes.find(
+                                            (n) => n.id === neighborId
+                                        );
+                                        if (!neighbor) return null;
+
+                                        return (
+                                            <div
+                                                key={neighborId}
+                                                onClick={() => {
+                                                    handleNodeClick(neighborId);
+                                                    onNodeSelect(
+                                                        neighbor,
+                                                        graphData
+                                                    );
+                                                }}
+                                                className="p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                                            >
+                                                {/* Header Section */}
+                                                <div className="flex items-center gap-3 mb-2">
+                                                    {/* Node Name */}
+                                                    <h3 className="font-semibold text-lg">
+                                                        {neighbor.id}
+                                                    </h3>
+
+                                                    {/* Node Type Badge */}
+                                                    <div className="inline-flex items-center px-2 py-1 rounded-full bg-gray-100">
+                                                        <div
+                                                            className="w-2 h-2 rounded-full mr-2"
+                                                            style={{
+                                                                backgroundColor:
+                                                                    getColor(
+                                                                        neighbor.type
+                                                                    ),
+                                                            }}
+                                                        />
+                                                        <span className="text-sm text-gray-600">
+                                                            {neighbor.type}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Description Section */}
+                                                {neighbor.description && (
+                                                    <p className="text-sm text-gray-600 leading-relaxed">
+                                                        {neighbor.description
+                                                            .length > 100
+                                                            ? `${neighbor.description.slice(0, 100)}...`
+                                                            : neighbor.description}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        );
+                                    }
+                                )}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
