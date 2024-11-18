@@ -15,7 +15,7 @@ from lightrag.llm import (
 )
 from lightrag.utils import EmbeddingFunc
 
-WORKING_DIR = "/Users/joeyxiong/Desktop/parakeet/code/starmoon-private/backend/files"
+WORKING_DIR = "/Users/joeyxiong/Desktop/parakeet/code/llama-clinic/server/files"
 
 
 async def llm_model_func(
@@ -66,15 +66,15 @@ def light_rag_instance():
     return rag
 
 
-# rag = LightRAG(
-#     working_dir=WORKING_DIR,
-#     llm_model_func=llm_model_func,
-#     embedding_func=EmbeddingFunc(
-#         embedding_dim=3072,
-#         max_token_size=8192,
-#         func=embedding_func,
-#     ),
-# )
+rag = LightRAG(
+    working_dir=WORKING_DIR,
+    llm_model_func=llm_model_func,
+    embedding_func=EmbeddingFunc(
+        embedding_dim=3072,
+        max_token_size=8192,
+        func=embedding_func,
+    ),
+)
 
 
 # async def test_funcs():
@@ -89,6 +89,9 @@ def light_rag_instance():
 # asyncio.run(test_funcs())
 
 # ----------------------------
+
+
+rag.insert()
 
 # ! For PDF files
 # file_path = f"{WORKING_DIR}/the-little-orange-book-2021.pdf"
@@ -125,101 +128,101 @@ def light_rag_instance():
 # net.show("knowledge_graph.html")
 
 
-client = Groq(api_key="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")
-MODEL = "llama-3.2-90b-vision-preview"
+# client = Groq(api_key="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")
+# MODEL = "llama-3.2-90b-vision-preview"
 
 
-# Dummy function to get cash loan details
-def medical_information_tool(query):
-    """
-    A tool that retrieves medical information and patient's health records from the database.
-    """
-    return rag.query(query, param=QueryParam(mode="hybrid"))
+# # Dummy function to get cash loan details
+# def medical_information_tool(query):
+#     """
+#     A tool that retrieves medical information and patient's health records from the database.
+#     """
+#     return rag.query(query, param=QueryParam(mode="hybrid"))
 
 
-# adding functions info into tools list
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "medical_information_tool",
-            "description": "A tool that uses the data extracted from the functions to answer questions about medical information and patient's healthcare records.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {
-                        "type": "string",
-                        "description": "Query related to medical information and patient's health records.",
-                    }
-                },
-                "required": ["query"],
-            },
-        },
-    },
-]
+# # adding functions info into tools list
+# tools = [
+#     {
+#         "type": "function",
+#         "function": {
+#             "name": "medical_information_tool",
+#             "description": "A tool that uses the data extracted from the functions to answer questions about medical information and patient's healthcare records.",
+#             "parameters": {
+#                 "type": "object",
+#                 "properties": {
+#                     "query": {
+#                         "type": "string",
+#                         "description": "Query related to medical information and patient's health records.",
+#                     }
+#                 },
+#                 "required": ["query"],
+#             },
+#         },
+#     },
+# ]
 
 
-def run_conversation(user_prompt):
+# def run_conversation(user_prompt):
 
-    messages = [
-        {
-            "role": "system",
-            "content": "You are a function calling LLM that uses the data extracted from the functions to answer questions about medical information. Don't mention anything about tool in response.",
-        },
-        {
-            "role": "user",
-            "content": user_prompt,
-        },
-    ]
+#     messages = [
+#         {
+#             "role": "system",
+#             "content": "You are a function calling LLM that uses the data extracted from the functions to answer questions about medical information. Don't mention anything about tool in response.",
+#         },
+#         {
+#             "role": "user",
+#             "content": user_prompt,
+#         },
+#     ]
 
-    response = client.chat.completions.create(
-        model=MODEL, messages=messages, tools=tools, tool_choice="auto", max_tokens=4096
-    )
+#     response = client.chat.completions.create(
+#         model=MODEL, messages=messages, tools=tools, tool_choice="auto", max_tokens=4096
+#     )
 
-    response_message = response.choices[0].message
-    tool_calls = response_message.tool_calls
-    print("tool_calls+++", tool_calls)
-    print("response_message+++", response_message)
+#     response_message = response.choices[0].message
+#     tool_calls = response_message.tool_calls
+#     print("tool_calls+++", tool_calls)
+#     print("response_message+++", response_message)
 
-    # checking if function calling required
-    if tool_calls:
-        available_functions = {
-            "medical_information_tool": medical_information_tool,
-        }
-        messages.append(response_message)
+#     # checking if function calling required
+#     if tool_calls:
+#         available_functions = {
+#             "medical_information_tool": medical_information_tool,
+#         }
+#         messages.append(response_message)
 
-        for tool_call in tool_calls:
-            # extracting the tool information
-            function_name = tool_call.function.name
-            function_to_call = available_functions[function_name]
-            function_args = json.loads(tool_call.function.arguments)
-            function_response = function_to_call(**function_args)
+#         for tool_call in tool_calls:
+#             # extracting the tool information
+#             function_name = tool_call.function.name
+#             function_to_call = available_functions[function_name]
+#             function_args = json.loads(tool_call.function.arguments)
+#             function_response = function_to_call(**function_args)
 
-            print("function_response+++", function_response)
+#             print("function_response+++", function_response)
 
-            # adding response from tool/function to chat template
-            messages.append(
-                {
-                    "tool_call_id": tool_call.id,
-                    "role": "tool",
-                    "name": function_name,
-                    "content": function_response,
-                }
-            )
+#             # adding response from tool/function to chat template
+#             messages.append(
+#                 {
+#                     "tool_call_id": tool_call.id,
+#                     "role": "tool",
+#                     "name": function_name,
+#                     "content": function_response,
+#                 }
+#             )
 
-        # getting the final response using function response
-        second_response = client.chat.completions.create(model=MODEL, messages=messages)
-        final_response = second_response.choices[0].message.content
+#         # getting the final response using function response
+#         second_response = client.chat.completions.create(model=MODEL, messages=messages)
+#         final_response = second_response.choices[0].message.content
 
-    else:
-        response = client.chat.completions.create(
-            model=MODEL, messages=messages, max_tokens=4096
-        )
-        messages.append(response_message)
-        final_response = response.choices[0].message.content
+#     else:
+#         response = client.chat.completions.create(
+#             model=MODEL, messages=messages, max_tokens=4096
+#         )
+#         messages.append(response_message)
+#         final_response = response.choices[0].message.content
 
-    return final_response
+#     return final_response
 
 
-user_prompt = "What is the little orange book? Can you explain it to me?"
-print(run_conversation(user_prompt))
+# user_prompt = "What is the little orange book? Can you explain it to me?"
+# print(run_conversation(user_prompt))

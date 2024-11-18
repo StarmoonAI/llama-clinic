@@ -37,9 +37,7 @@ async def websocket_endpoint(websocket: WebSocket):
             return
 
         print("Authentication successf+++++++++++++ul", user["volume_control"])
-        await websocket.send_json(
-            {"type": "auth_success", "text_data": user["volume_control"]}
-        )
+        await websocket.send_json({"type": "auth_success", "text_data": 50})
         print("Authentication successful", user)
 
         messages = []

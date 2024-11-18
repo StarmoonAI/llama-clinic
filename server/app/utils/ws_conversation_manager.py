@@ -184,12 +184,12 @@ class ConversationManager:
         if not is_greeting:
 
             messages.append({"role": "user", "content": utterance})
-            # response = client.client_azure_4o.chat.completions.create(
-            #     model="gpt-4o",
-            #     messages=messages,
-            #     stream=True,
-            # )
-            response = run_conversation(client, utterance, messages)
+            response = client.client_azure_4o.chat.completions.create(
+                model="gpt-4o",
+                messages=messages,
+                stream=True,
+            )
+            # response = run_conversation(client, utterance, messages)
             # send utterance to celery task
             task_id = create_emotion_detection_task(
                 f"{previous_sentence}\n\n{utterance}", user, "user", session_id
@@ -213,11 +213,11 @@ class ConversationManager:
         else:
             messages_ = messages.copy()
             messages_.append({"role": "user", "content": utterance})
-            # response = client.client_azure_4o.chat.completions.create(
-            #     model="gpt-4o",
-            #     messages=messages_,
-            #     stream=True,
-            # )
+            response = client.client_azure_4o.chat.completions.create(
+                model="gpt-4o",
+                messages=messages_,
+                stream=True,
+            )
 
             # response = client.agroq_client.chat.completions.create(
             #     model="llama-3.2-90b-vision-preview",
@@ -226,13 +226,13 @@ class ConversationManager:
             #     max_tokens=2048,
             #     stream=True,
             # )
-            response = client.agroq_client.chat.completions.create(
-                model="llama-3.2-90b-vision-preview",
-                messages=messages_,
-                temperature=0.5,
-                max_tokens=2048,
-                stream=True,
-            )
+            # response = client.agroq_client.chat.completions.create(
+            #     model="llama-3.2-90b-vision-preview",
+            #     messages=messages_,
+            #     temperature=0.5,
+            #     max_tokens=2048,
+            #     stream=True,
+            # )
 
         accumulated_text = []
         response_text = ""
