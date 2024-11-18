@@ -17,76 +17,6 @@ const uint32_t wifiConnectTimeoutMs = 10000;
 #define DEEP_SLEEP_EXT0
 // RTC_DATA_ATTR int sleep_count = 0;
 
-// Define the pins for the RGB LED
-#define RED_LED_PIN D4
-#define GREEN_LED_PIN D5
-#define BLUE_LED_PIN D6
-
-void setLEDColor(uint8_t r, uint8_t g, uint8_t b)
-{
-    analogWrite(RED_LED_PIN, r);
-    analogWrite(GREEN_LED_PIN, g);
-    analogWrite(BLUE_LED_PIN, b);
-}
-
-void turnOffLED()
-{
-    digitalWrite(RED_LED_PIN, LOW);
-    digitalWrite(GREEN_LED_PIN, LOW);
-    digitalWrite(BLUE_LED_PIN, LOW);
-}
-
-void turnOnLED()
-{
-    digitalWrite(RED_LED_PIN, HIGH);
-    digitalWrite(GREEN_LED_PIN, HIGH);
-    digitalWrite(BLUE_LED_PIN, HIGH);
-}
-
-void setupRGBLED()
-{
-    pinMode(RED_LED_PIN, OUTPUT);
-    pinMode(GREEN_LED_PIN, OUTPUT);
-    pinMode(BLUE_LED_PIN, OUTPUT);
-    turnOffLED(); // Turn off the LED initially
-}
-
-void ledTask(void *parameter)
-{
-    int brightness = 0; // Current brightness level
-    int fadeAmount = 5; // Amount by which to change the brightness each cycle
-
-    while (1)
-    {
-        if (webSocket.isConnected())
-        {
-            if (isPlayingAudio)
-            {
-                // Pulsate when playing audio
-                setLEDColor(brightness, brightness, brightness);
-                brightness += fadeAmount;
-
-                // Reverse direction of fading at the ends of the fade
-                if (brightness <= 0 || brightness >= 255)
-                {
-                    fadeAmount = -fadeAmount;
-                }
-            }
-            else
-            {
-                turnOnLED();
-            }
-        }
-        // else
-        // {
-        //     turnOffLED(); // LED off
-        // }
-
-        // Delay for smoother LED transitions
-        vTaskDelay(30 / portTICK_PERIOD_MS); // Approximate the delay from the original `pulsateLED()`
-    }
-}
-
 void showWakeReason()
 {
     auto cause = esp_sleep_get_wakeup_cause();
@@ -215,28 +145,10 @@ void webSocketEvent(WStype_t type, uint8_t *payload, size_t length)
         break;
     case WStype_BIN:
     {
-        // Create a buffer for the scaled audio
-        uint8_t *scaledAudio = (uint8_t *)malloc(length);
-        if (scaledAudio == nullptr)
-        {
-            Serial.println("Failed to allocate memory for audio scaling");
-            return;
-        }
-
-        // Scale the audio based on currentVolume
-        scaleAudioVolume(payload, scaledAudio, length, currentVolume);
-
-        // Write the scaled audio to I2S
+        // Write the audio data directly to I2S at max volume
         size_t bytes_written;
-        i2s_write(I2S_PORT_OUT, scaledAudio, length, &bytes_written, portMAX_DELAY);
-
-        // Print how many bytes were actually written
-        Serial.printf("Bytes written to I2S: %d\n\n", bytes_written);
-
+        i2s_write(I2S_PORT_OUT, payload, length, &bytes_written, portMAX_DELAY);
         isPlayingAudio = true;
-
-        // Free the temporary buffer
-        free(scaledAudio);
     }
     break;
     case WStype_ERROR:
@@ -302,7 +214,6 @@ void buttonTask(void *parameter)
                     Serial.println("Long press - entering sleep mode");
                     webSocket.sendTXT("{\"speaker\": \"user\", \"is_replying\": false, \"is_interrupted\": false, \"is_ending\": true, \"is_end_of_sentence\": false}");
                     // webSocket.disconnect();
-                    turnOffLED();
                     delay(1000);
                     enterSleep();
                 }
@@ -363,7 +274,6 @@ void setup()
 {
     Serial.begin(115200);
     delay(500);
-    setupRGBLED();
 
     // resetDevice();
 
@@ -377,7 +287,6 @@ void setup()
     // pinMode(LED_PIN, OUTPUT);
     // digitalWrite(LED_PIN, LOW);
 
-    xTaskCreate(ledTask, "LED Task", 4096, NULL, 1, NULL);
     xTaskCreate(buttonTask, "Button Task", 8192, NULL, 5, NULL);
 
     connectToWifiAndWS();

@@ -10,17 +10,17 @@ const char *ssid = "eduroam";
 // use this for personal networks
 // const char *ssid_peronal = "launchlab";
 // const char *password_personal = "LaunchLabRocks";
-const char *ssid_peronal = "SKYCFZHN-2.4G";
-const char *password_personal = "CFaxCbZ9Y6CQ";
+const char *ssid_peronal = "Knotel Workclub";
+const char *password_personal = "Workclub";
 
 // WebSocket server details
 // const char *backend_server = "51.8.202.78";
 // const uint16_t backend_port = 80;
-const char *backend_server = "192.168.2.236";
+const char *backend_server = "10.100.1.226";
 const uint16_t backend_port = 8000;
 
 const char *websocket_path = "/starmoon";
-const char *auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWFmNjJiMGUtM2RhNC00YzQ0LWFkZjctNWIxYjdjOWM0Y2I2IiwiZW1haWwiOiJhZG1pbkBzdGFybW9vbi5hcHAiLCJpYXQiOjE3MzE1OTQ2NTh9.Rqj7Zql9GM63edA869BwygEfPYVet2F3x-28mzX_5Ts";
+const char *auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWFmNjJiMGUtM2RhNC00YzQ0LWFkZjctNWIxYjdjOWM0Y2I2IiwiZW1haWwiOiJhZG1pbkBzdGFybW9vbi5hcHAiLCJpYXQiOjE3MzE4NDE5NTJ9.IINl76I_FIvSCybJLOT5XqFWgbXSnqZS8vdxnAqQTHA";
 
 String authTokenGlobal;
 
@@ -37,18 +37,18 @@ int16_t sBuffer[bufferLen];
 
 const int LED_PIN = 2;
 
-const int I2S_SD = 14;
-const int I2S_WS = 4;
-const int I2S_SCK = 1;
+const int I2S_SD = 32;
+const int I2S_WS = 15;
+const int I2S_SCK = 14;
 const i2s_port_t I2S_PORT_IN = I2S_NUM_0;
 
-const int I2S_WS_OUT = 5;
-const int I2S_BCK_OUT = 6;
-const int I2S_DATA_OUT = 7;
+const int I2S_WS_OUT = 26;
+const int I2S_BCK_OUT = 27;
+const int I2S_DATA_OUT = 25;
 const i2s_port_t I2S_PORT_OUT = I2S_NUM_1;
-const int I2S_SD_OUT = -1;
+const int I2S_SD_OUT = 21;
 
-const gpio_num_t BUTTON_PIN = GPIO_NUM_0; // Only RTC IO are allowed - ESP32 Pin example
+const gpio_num_t BUTTON_PIN = GPIO_NUM_34; // Only RTC IO are allowed - ESP32 Pin example
 
 #elif defined(USE_XIAO_ESP32)
 

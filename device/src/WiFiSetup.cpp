@@ -414,13 +414,12 @@ void connectWithPassword()
 
 bool connectToWiFi()
 {
-    printStoredNetworks();
     if (WiFi.status() != WL_CONNECTED)
     {
         Serial.println("1. Trying to connect to WiFi...");
-        getAuthTokenFromNVS();
-        connectWithWifiManager(); // Use a timeout of 10 minutes for WiFi manager
-        // connectWithPassword();
+
+        // connectWithWifiManager(); // Use a timeout of 10 minutes for WiFi manager
+        connectWithPassword();
     }
     return WiFi.status() == WL_CONNECTED;
 }

@@ -117,10 +117,7 @@ export function GraphModal() {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    "http://localhost:8000/api/get_graphml",
-                    {
-                        method: "GET",
-                    }
+                    "/graph_chunk_entity_relation.graphml"
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -299,34 +296,30 @@ export function GraphModal() {
                         Send to GP
                     </Button>
                 </DialogTitle>
-                {graphData.nodes.length === 0 ? (
-                    <div className="flex-1 min-h-0">Loading...</div>
-                ) : (
-                    <div className="flex-1 min-h-0">
-                        <div className="flex flex-row w-full h-full">
-                            <div className="w-3/5 h-full">
-                                <GraphViz
-                                    data={graphData}
-                                    handleNodeSelect={handleNodeSelect}
-                                    handleClearSelection={handleClearSelection}
-                                    selectedNode={selectedNode}
-                                    selectedNeighbors={selectedNeighbors}
-                                    uniqueTypes={uniqueTypes}
-                                />
-                            </div>
-                            <div className="w-2/5 h-full">
-                                <GraphDetails
-                                    graphData={graphData}
-                                    selectedNode={selectedNode}
-                                    selectedNeighbors={selectedNeighbors}
-                                    handleClearSelection={handleClearSelection}
-                                    uniqueTypes={uniqueTypes}
-                                    onNodeSelect={handleNodeSelect}
-                                />
-                            </div>
+                <div className="flex-1 min-h-0">
+                    <div className="flex flex-row w-full h-full">
+                        <div className="w-3/5 h-full">
+                            <GraphViz
+                                data={graphData}
+                                handleNodeSelect={handleNodeSelect}
+                                handleClearSelection={handleClearSelection}
+                                selectedNode={selectedNode}
+                                selectedNeighbors={selectedNeighbors}
+                                uniqueTypes={uniqueTypes}
+                            />
+                        </div>
+                        <div className="w-2/5 h-full">
+                            <GraphDetails
+                                graphData={graphData}
+                                selectedNode={selectedNode}
+                                selectedNeighbors={selectedNeighbors}
+                                handleClearSelection={handleClearSelection}
+                                uniqueTypes={uniqueTypes}
+                                onNodeSelect={handleNodeSelect}
+                            />
                         </div>
                     </div>
-                )}
+                </div>
             </DialogContent>
         </Dialog>
     );

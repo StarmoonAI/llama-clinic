@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "backend"
+name = "server"
 version = "0.1.0"
 description = ""
 authors = ["Joey Xiong <junruxiong@gmail.com>"]
@@ -38,7 +38,6 @@ nltk = "^3.9.1"
 groq = "^0.12.0"
 textract = "^1.6.5"
 fish-audio-sdk = "^2024.10.22"
-
 
 [build-system]
 requires = ["poetry-core"]
