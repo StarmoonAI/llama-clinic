@@ -265,7 +265,7 @@ def azure_tts(
 session = Session("af9be9fe8dfa49dc8a2bbb0c4f5b11c1")
 
 toyid2speechname_fish = {
-    "6c3eb71a-8d68-4fc6-85c5-27d283ecabc8": "f187db9986f545b986af014579c7fae4",
+    "6c3eb71a-8d68-4fc6-85c5-27d283ecabc8": "90395af35dc44df6856f4fe287fdfb22",
     "14d91296-eb6b-41d7-964c-856a8614d80e": "f187db9986f545b986af014579c7fae4",
     "56224f7f-250d-4351-84ee-e4a13b881c7b": "f187db9986f545b986af014579c7fae4",
 }
